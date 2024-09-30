@@ -8,13 +8,13 @@ package projectApp;
  *
  * @author juanmendezl
  */
-public class ProjectApplevDell {
+public class main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        App.start();
+        app.start();
     }
     
 }
