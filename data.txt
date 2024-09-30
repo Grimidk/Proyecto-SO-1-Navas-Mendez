@@ -1,0 +1,157 @@
+{
+  "data": {
+    "duration": 1,
+    "hours": 24,
+    "totalWorkers": 12,
+    "productions": {
+      "board": {
+        "pay": 20,
+        "rate": 0.5,
+        "cap": 25,
+        "workers": 0
+      },
+      "cpu": {
+        "pay": 26,
+        "rate": 0.5,
+        "cap": 20,
+        "workers": 0
+      },
+      "ram": {
+        "pay": 40,
+        "rate": 3,
+        "cap": 55,
+        "workers": 0
+      },
+      "supply": {
+        "pay": 16,
+        "rate": 3,
+        "cap": 35,
+        "workers": 0
+      },
+      "gpu": {
+        "pay": 34,
+        "rate": 0.3333,
+        "cap": 10,
+        "workers": 0
+      },
+      "computer": {
+        "pay": 50,
+        "rate": 0.5,
+        "cap": -1,
+        "workers": 0
+      }
+    },
+    "manager": {
+      "pay": 40,
+      "counter": 8,
+      "work": 16,
+      "interval": 0.5,
+      "penalty": 100
+    },
+    "director": {
+      "pay": 60,
+      "threshold": 1,
+      "distribute": 24,
+      "check": 1,
+      "interval": 0.5833
+    }
+  },
+  "companies": {
+    "apple": {
+      "standard": {
+        "recipe": {
+          "board": 2,
+          "cpu": 1,
+          "ram": 4,
+          "supply": 4,
+          "gpu": 0,
+          "batch": 5
+        },
+        "price": 100000
+      },
+      "special": {
+        "recipe": {
+          "board": 2,
+          "cpu": 1,
+          "ram": 4,
+          "supply": 4,
+          "gpu": 2,
+          "batch": 1
+        },
+        "price": 150000
+      }
+    },
+    "dell": {
+      "standard": {
+        "recipe": {
+          "board": 1,
+          "cpu": 5,
+          "ram": 6,
+          "supply": 5,
+          "gpu": 0,
+          "batch": 3
+        },
+        "price": 80000
+      },
+      "special": {
+        "recipe": {
+          "board": 1,
+          "cpu": 5,
+          "ram": 6,
+          "supply": 5,
+          "gpu": 1,
+          "batch": 1
+        },
+        "price": 120000
+      }
+    },
+    "msi": {
+      "standard": {
+        "recipe": {
+          "board": 2,
+          "cpu": 3,
+          "ram": 4,
+          "supply": 6,
+          "gpu": 0,
+          "batch": 6
+        },
+        "price": 180000
+      },
+      "special": {
+        "recipe": {
+          "board": 2,
+          "cpu": 3,
+          "ram": 4,
+          "supply": 6,
+          "gpu": 5,
+          "batch": 1
+        },
+        "price": 250000
+      }
+    },
+    "hp": {
+      "standard": {
+        "recipe": {
+          "board": 1,
+          "cpu": 1,
+          "ram": 2,
+          "supply": 4,
+          "gpu": 0,
+          "batch": 2
+        },
+        "price": 90000
+      },
+      "special": {
+        "recipe": {
+          "board": 1,
+          "cpu": 1,
+          "ram": 2,
+          "supply": 4,
+          "gpu": 3,
+          "batch": 1
+        },
+        "price": 140000
+      }
+    }
+  }
+}
