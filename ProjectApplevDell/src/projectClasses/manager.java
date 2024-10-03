@@ -8,6 +8,6 @@ package projectClasses;
  *
  * @author juanmendezl
  */
-public class manager {
+public class Manager {
     
 }
