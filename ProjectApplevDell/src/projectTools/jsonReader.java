@@ -10,4 +10,7 @@ package projectTools;
  */
 public class jsonReader {
     
+    public static void reader(){
+        
+    }
 }
