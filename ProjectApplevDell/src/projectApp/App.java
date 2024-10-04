@@ -5,7 +5,7 @@
 package projectApp;
 import ProjectClasses.*;
 import ProjectTools.*;
-import projectInterface.init;
+import projectInterface.Init;
 
 /**
  *
@@ -13,7 +13,7 @@ import projectInterface.init;
  */
 public class app {
     public static void start(){
-        init ini = new init();
+        Init ini = new Init();
         ini.setVisible(true);
     }
 }

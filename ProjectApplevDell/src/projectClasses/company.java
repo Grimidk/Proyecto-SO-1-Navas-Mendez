@@ -6,8 +6,18 @@ package projectClasses;
 
 /**
  *
- * @author juanmendezl
+ * @author Svet
  */
-public class company {
-    
+public class Company {
+    private String name;
+    private int numWorker;
+    private Worker worker; //no se
+    private Manager projectManager; //no se
+
+    public Company(String name, int numWorker, Worker worker, Manager projectManager) {
+        this.name = name;
+        this.numWorker = numWorker;
+        this.worker = worker;
+        this.projectManager = projectManager;
+    } 
 }

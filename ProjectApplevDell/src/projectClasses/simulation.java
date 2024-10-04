@@ -8,7 +8,7 @@ package projectClasses;
  *
  * @author juanmendezl
  */
-public class simulation {
+public class Simulation {
     
     
     

@@ -8,7 +8,7 @@ package projectApp;
  *
  * @author juanmendezl
  */
-public class main {
+public class Main {
 
     /**
      * @param args the command line arguments

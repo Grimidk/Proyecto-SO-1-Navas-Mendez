@@ -8,6 +8,6 @@ package projectClasses;
  *
  * @author juanmendezl
  */
-public class director {
+public class Director {
     
 }

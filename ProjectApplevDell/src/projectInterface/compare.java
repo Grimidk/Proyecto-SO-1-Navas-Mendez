@@ -8,13 +8,13 @@ package projectInterface;
  *
  * @author juanmendezl
  */
-public class compare extends javax.swing.JFrame {
+public class Compare extends javax.swing.JFrame {
     
-    public static init ini;
+    public static Init ini;
     /**
      * Creates new form compare
      */
-    public compare(init ini) {
+    public Compare(Init ini) {
         initComponents();
         this.ini = ini;
         ini.setVisible(false);
@@ -63,7 +63,7 @@ public class compare extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        init ini = new init();
+        Init ini = new Init();
         ini.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
@@ -85,21 +85,23 @@ public class compare extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(compare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(compare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(compare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(compare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new compare(ini).setVisible(true);
+                new Compare(ini).setVisible(true);
             }
         });
     }
