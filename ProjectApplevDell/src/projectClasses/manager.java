@@ -6,8 +6,64 @@ package projectClasses;
 
 /**
  *
- * @author juanmendezl
+ * @author Svet
  */
 public class Manager {
+    private int pay;
+    private int countedHours;
+    private int workedHours;
+    private int timeInterval;
+    private int penaltyAmount;
+
+    // CONSTRUCTOR
+    public Manager(int pay, int countedHours, int workedHours, int timeInterval, int penaltyAmount) {
+        this.pay = pay;
+        this.countedHours = countedHours;
+        this.workedHours = workedHours;
+        this.timeInterval = timeInterval;
+        this.penaltyAmount = penaltyAmount;
+    }
+
+    // GETTERS & SETTERS
+    public int getPay() {
+        return pay;
+    }
+
+    public void setPay(int pay) {
+        this.pay = pay;
+    }
+
+    public int getCountedHours() {
+        return countedHours;
+    }
+
+    public void setCountedHours(int countedHours) {
+        this.countedHours = countedHours;
+    }
+
+    public int getWorkedHours() {
+        return workedHours;
+    }
+
+    public void setWorkedHours(int workedHours) {
+        this.workedHours = workedHours;
+    }
+
+    public int getTimeInterval() {
+        return timeInterval;
+    }
+
+    public void setTimeInterval(int timeInterval) {
+        this.timeInterval = timeInterval;
+    }
+
+    public int getPenaltyAmount() {
+        return penaltyAmount;
+    }
+
+    public void setPenalty(int penaltyAmount) {
+        this.penaltyAmount = penaltyAmount;
+    }
+    
     
 }
