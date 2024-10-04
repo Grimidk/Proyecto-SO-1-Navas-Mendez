@@ -6,11 +6,8 @@ package projectClasses;
 
 /**
  *
- * @author Svet
+ * @author juanmendezl
  */
-public class Worker {
-    private String workerType; // no se si hacerlo string
-    public int wageByHour;
-    
+public class Production {
     
 }

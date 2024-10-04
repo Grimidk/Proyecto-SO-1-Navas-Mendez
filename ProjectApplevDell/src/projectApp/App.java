@@ -11,7 +11,7 @@ import projectInterface.Init;
  *
  * @author juanmendezl
  */
-public class app {
+public class App {
     public static void start(){
         Init ini = new Init();
         ini.setVisible(true);

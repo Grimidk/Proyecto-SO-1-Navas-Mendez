@@ -8,7 +8,7 @@ package projectTools;
  *
  * @author juanmendezl
  */
-public class jsonReader {
+public class JsonReader {
     
     public static void reader(){
         

@@ -6,10 +6,8 @@ package projectClasses;
 
 /**
  *
- * @author Svet
+ * @author juanmendezl
  */
-public class Company {
-    private String name;
-    private Manager projectManager; 
-
+public class Computer {
+    
 }
