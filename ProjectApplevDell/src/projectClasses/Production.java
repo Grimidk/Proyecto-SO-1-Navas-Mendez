@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectClasses;
+import auxClasses.LinkedList;
 
 /**
  *
@@ -10,52 +11,55 @@ package projectClasses;
  */
 public class Production {
     private String name;
-    private Integer pay;
-    private Float rate;
-    private Integer capacity;
-    private Integer inventory;
-    private Integer workers;
-    private String requirements;
+    private int pay;
+    private double rate;
+    private double capacity;
+    private double inventory;
+    private int workers;
+    private LinkedList<Integer> requirements;
+    private int counter;
 
-    public Production(String name, Integer pay, Float rate, Integer capacity, Integer workers) {
+    public Production(String name, int pay, double rate, double capacity, int workers) {
         this.name = name;
         this.pay = pay;
         this.rate = rate;
         this.capacity = capacity;
         this.workers = workers;
         this.requirements = null;
+        this.counter = 0;
     }
 
-    public Production(String name, Integer pay, Float rate, Integer capacity, Integer workers, String requirements) {
+    public Production(String name, int pay, double rate, double capacity, int workers, LinkedList requirements) {
         this.name = name;
         this.pay = pay;
         this.rate = rate;
         this.capacity = capacity;
         this.workers = workers;
         this.requirements = requirements;
+        this.counter = 0;
     }
 
     public String getName() {
         return name;
     }
     
-    public Integer getPay() {
+    public int getPay() {
         return pay;
     }
 
-    public Float getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public Integer getCapacity() {
+    public double getCapacity() {
         return capacity;
     }
     
-    public Integer getInventory() {
+    public double getInventory() {
         return inventory;
     }
     
-    public Integer getRemainingInventory() {
+    public double getRemainingInventory() {
         if (this.capacity < 0) {
             return 1000000;
         } else {
@@ -63,19 +67,23 @@ public class Production {
         }
     }
 
-    public Integer getWorkers() {
+    public int getWorkers() {
         return workers;
     }
 
-    public String getRequirements() {
+    public LinkedList getRequirements() {
         return requirements;
+    }
+    
+    public int getCounter() {
+        return counter;
     }
 
     public void setName(String name) {
         this.name = name;
     }
     
-    public void setPay(Integer pay) {
+    public void setPay(int pay) {
         this.pay = pay;
     }
 
@@ -83,23 +91,50 @@ public class Production {
         this.rate = rate;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+    
+    public void setInventory(double inventory) {
+        this.inventory = inventory;
+    }
 
-    public void setWorkers(Integer workers) {
+    public void setWorkers(int workers) {
         this.workers = workers;
     }
 
-    public void setRequirements(String requirements) {
+    public void setRequirements(LinkedList requirements) {
         this.requirements = requirements;
     }
     
-    public Float getFinalRate () {
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+    
+    public double getFinalRate () {
         return this.rate * this.workers;
     }
     
-    public Integer getFinalPay () {
+    public int getFinalPay () {
         return this.pay * this.workers;
+    }
+    
+    public boolean isRequirementsMet (){
+        if (this.requirements == null){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public void produce () {
+        if (this.isRequirementsMet() && this.getRemainingInventory() > 0) {
+            if(this.getRemainingInventory() >= this.getFinalRate()) {
+                this.setInventory(this.inventory + this.getFinalRate());
+            } else {
+                this.setInventory(this.inventory + this.getRemainingInventory());           
+            }
+            this.counter += 1;
+        }
     }
 }

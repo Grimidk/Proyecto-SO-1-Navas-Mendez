@@ -32,6 +32,7 @@ public class Simulate extends javax.swing.JFrame {
     private void initComponents() {
 
         back = new javax.swing.JButton();
+        startSim = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,19 +43,30 @@ public class Simulate extends javax.swing.JFrame {
             }
         });
 
+        startSim.setText("Iniciar Simulacion");
+        startSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startSimActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(360, 360, 360)
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startSim, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                 .addContainerGap(350, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
+                .addContainerGap(221, Short.MAX_VALUE)
+                .addComponent(startSim)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(back)
                 .addGap(221, 221, 221))
         );
@@ -67,6 +79,10 @@ public class Simulate extends javax.swing.JFrame {
         ini.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
+
+    private void startSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startSimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startSimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,5 +124,6 @@ public class Simulate extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JButton startSim;
     // End of variables declaration//GEN-END:variables
 }

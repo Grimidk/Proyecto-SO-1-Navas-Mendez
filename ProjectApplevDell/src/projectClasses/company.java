@@ -14,9 +14,9 @@ public class Company {
     private Manager manager; 
     private Computer standard;
     private Computer special;
-    private Integer money;
+    private int money;
 
-    public Company(String name, Director director, Manager manager, Computer standard, Computer special, Integer money) {
+    public Company(String name, Director director, Manager manager, Computer standard, Computer special, int money) {
         this.name = name;
         this.director = director;
         this.manager = manager;
@@ -45,7 +45,7 @@ public class Company {
         return special;
     }
 
-    public Integer getMoney() {
+    public int getMoney() {
         return money;
     }
 
@@ -69,7 +69,7 @@ public class Company {
         this.special = special;
     }
 
-    public void setMoney(Integer money) {
+    public void setMoney(int money) {
         this.money = money;
     }
 }

@@ -1,6 +1,7 @@
 {
   "data": {
     "duration": 1,
+    "deadline": 30,
     "hours": 24,
     "totalWorkers": 12,
     "productions": {

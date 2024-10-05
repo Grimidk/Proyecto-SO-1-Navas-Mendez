@@ -3,16 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectClasses;
+import java.util.Calendar;
 
 /**
  *
  * @author juanmendezl
  */
 public class Simulation {
-    private Integer counter;
-    private Integer workers;
-    private Integer duration;
-    private Integer hours;
+    private int dayCounter;
+    private int hourCounter;
+    private int deadline;
+    private int workers;
+    private int duration;
+    private int hours;
     private Company company;
     private Production boards;
     private Production cpus;
@@ -21,8 +24,10 @@ public class Simulation {
     private Production gpus;
     private Production computers;
 
-    public Simulation(Integer workers, Integer duration, Integer hours, Company company, Production boards, Production cpus, Production rams, Production supplies, Production gpus, Production computers) {
-        this.counter = 0;
+    public Simulation(int deadline, int workers, int duration, int hours, Company company, Production boards, Production cpus, Production rams, Production supplies, Production gpus, Production computers) {
+        this.dayCounter = deadline;
+        this.hourCounter = 0;
+        this.deadline = deadline;
         this.workers = workers;
         this.duration = duration;
         this.hours = hours;
@@ -35,19 +40,27 @@ public class Simulation {
         this.computers = computers;
     }
     
-    public Integer getCounter() {
-        return counter;
+    public int getDayCounter() {
+        return dayCounter;
+    }
+    
+    public int getHourCounter() {
+        return hourCounter;
+    }
+    
+    public int getDeadline() {
+        return deadline;
     }
 
-    public Integer getWorkers() {
+    public int getWorkers() {
         return workers;
     }
 
-    public Integer getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public Integer getHours() {
+    public int getHours() {
         return hours;
     }
 
@@ -79,19 +92,27 @@ public class Simulation {
         return computers;
     }
     
-    public void setCounter(Integer counter) {
-        this.counter = counter;
+    public void setDayCounter(int dayCounter) {
+        this.dayCounter = dayCounter;
+    }
+    
+    public void setHourCounter(int hourCounter) {
+        this.hourCounter = hourCounter;
+    }
+    
+    public void setDeadline(int deadline) {
+        this.deadline = deadline;
     }
 
-    public void setWorkers(Integer workers) {
+    public void setWorkers(int workers) {
         this.workers = workers;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
-    public void setHours(Integer hours) {
+    public void setHours(int hours) {
         this.hours = hours;
     }
 
@@ -121,5 +142,42 @@ public class Simulation {
 
     public void setComputers(Production computers) {
         this.computers = computers;
-    }  
+    }
+    
+    public void run() {
+        int miliseconds = Calendar.getInstance().get(Calendar.MILLISECOND);
+        while ((miliseconds%(1000*this.duration)) == 0) {
+            this.runHour();
+        }
+    }
+    
+    public void runHour() {
+        this.boards.produce();
+        this.cpus.produce();
+        this.rams.produce();
+        this.supplies.produce();
+        this.gpus.produce();
+        this.computers.produce();
+        
+        if (this.hourCounter <= 22) {
+            this.hourCounter += 1;
+        } else {
+            this.setHourCounter(0);
+            this.runDay();
+        }
+    }
+    
+    public void runDay() {
+        if (this.dayCounter >= 1) {
+            this.dayCounter -= 1;  
+        } else {
+            this.setHourCounter(this.getDeadline());
+            this.runMonth();
+        }
+        
+    }
+    
+    public void runMonth() {
+        
+    }
 }
