@@ -24,6 +24,32 @@ public class Manager {
         this.penaltyAmount = penaltyAmount;
     }
 
+    // FUNCTIONS
+    public int getPaid(boolean penaltyAccredited, int countPenalty){
+        int totalAmount = this.pay*(this.countedHours);
+        if (penaltyAccredited){
+            totalAmount -= (countPenalty*this.penaltyAmount);
+        }
+        return totalAmount;
+    }
+    
+    public boolean changeCounter() {
+        return true;
+    }
+    
+    public boolean animeView(){
+        double ranNumber  = Math.random();
+        return ranNumber < 0.5;
+    }
+            
+    public boolean runManager(int hour){
+        if (hour < 15) {
+            return  this.animeView();
+        } else {
+            return this.changeCounter();
+        }
+    }
+    
     // GETTERS & SETTERS
     public int getPay() {
         return pay;
