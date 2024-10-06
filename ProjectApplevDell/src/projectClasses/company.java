@@ -73,9 +73,10 @@ public class Company {
         this.money = money;
     }
     
-    public void payroll(int nomina, boolean penalty, int count){
+    public void payroll(int nomina){
         this.money -= (this.director.getWage() * 24);
-//        this.money -= this.manager.getPaid(penalty,count);
+        this.money -= this.manager.getPaid(this.director.isPenaltyAccredited(),this.director.getCountPenalty());
+        this.director.setCountPenalty(0);
         this.money -= nomina;
     }
     

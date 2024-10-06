@@ -228,7 +228,7 @@ public class Simulation {
     
     public void runDay() {
         // Nominas
-        this.company.payroll(this.boards.getFinalPay() + this.cpus.getFinalPay() + this.rams.getFinalPay() + this.supplies.getFinalPay() + this.gpus.getFinalPay(), this.company.getDirector().isPenaltyAccredited(), this.company.getDirector().getCountPenalty());
+        this.company.payroll(this.boards.getFinalPay() + this.cpus.getFinalPay() + this.rams.getFinalPay() + this.supplies.getFinalPay() + this.gpus.getFinalPay());
         this.company.getDirector().setPenaltyAccredited(false);
         
         // Tiempos
