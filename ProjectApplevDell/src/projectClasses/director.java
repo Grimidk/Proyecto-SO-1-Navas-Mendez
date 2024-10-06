@@ -14,17 +14,40 @@ public class Director {
     private int threshold;
     private int timeShipping;
     private int countPenalty;
-    private int timeIntervalForPM;
+    private int checkHour;
 
     // CONSTRUCTOR
-    public Director(int wage, boolean penaltyAccredited, int threshold, int timeShipping, int countPenalty, int timeIntervalForPM) {
+    public Director(int wage, boolean penaltyAccredited, int threshold, int timeShipping, int countPenalty, int checkHour) {
         this.wage = wage;
         this.penaltyAccredited = penaltyAccredited;
         this.threshold = threshold;
         this.timeShipping = timeShipping;
         this.countPenalty = countPenalty;
-        this.timeIntervalForPM = timeIntervalForPM;
+        this.checkHour = 0;
     }
+    
+    // FUNCTIONS
+    
+    public boolean distributing(){
+        return true;
+    }
+    
+    public int runDirector(int hours, int remainingDays, Manager manager) {
+        if (remainingDays <= 0) {
+            this.distributing();
+    }   else if (hours < 0) {
+            this.checkHour = (int) (Math.random() * 24);
+            if (hours == this.checkHour) {
+                boolean isWorking = manager.runManager(hours);
+                this.penaltyAccredited = !isWorking;
+                if (!isWorking){
+                    this.countPenalty += 1;
+                }
+        }
+    }
+        return this.countPenalty;
+}
+
 
     // GETTERS & SETTERS
     public int getWage() {
@@ -67,14 +90,11 @@ public class Director {
         this.countPenalty = countPenalty;
     }
 
-    public int getTimeIntervalForPM() {
-        return timeIntervalForPM;
+    public int getCheckHour() {
+        return checkHour;
     }
 
-    public void setTimeIntervalForPM(int timeIntervalForPM) {
-        this.timeIntervalForPM = timeIntervalForPM;
+    public void setCheckHour(int checkHour) {
+        this.checkHour = checkHour;
     }
-    
-    
-    
 }
