@@ -72,4 +72,17 @@ public class Company {
     public void setMoney(int money) {
         this.money = money;
     }
+    
+    public void payroll(int nomina, boolean penalty, int count){
+        this.money -= (this.director.getWage() * 24);
+//        this.money -= this.manager.getPaid(penalty,count);
+        this.money -= nomina;
+    }
+    
+    public void distribute(Production computers, int accStandard, int accSpecial) {
+        computers.setInventory(0);
+        int incomeStandard = accStandard * this.getStandard().getPrice();
+        int incomeSpecial = accSpecial * this.getSpecial().getPrice();
+        this.money += incomeSpecial + incomeStandard;
+    }
 }

@@ -33,7 +33,7 @@ public class Computer {
 
     // METHODS
     
-    public LinkedList<Integer> getRecipe(int numBoard, int numCpu, int numRam, int numPowerSupply, int numGpu, int batch) {
+    public LinkedList<Integer> getRecipe() {
         LinkedList<Integer> computers = new LinkedList<>();
         computers.insert(this.numBoard, 0);
         computers.insert(this.numCpu, 1);

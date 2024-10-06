@@ -12,11 +12,15 @@ import java.util.Calendar;
 public class Simulation {
     private int dayCounter;
     private int hourCounter;
+    private int prodCounter;
+    private int accStandard;
+    private int accSpecial;
     private int deadline;
     private int workers;
     private int duration;
     private int hours;
     private Company company;
+    private Computer currentComputer;
     private Production boards;
     private Production cpus;
     private Production rams;
@@ -27,11 +31,15 @@ public class Simulation {
     public Simulation(int deadline, int workers, int duration, int hours, Company company, Production boards, Production cpus, Production rams, Production supplies, Production gpus, Production computers) {
         this.dayCounter = deadline;
         this.hourCounter = 0;
+        this.prodCounter = 0;
+        this.accStandard = 0;
+        this.accSpecial = 0;
         this.deadline = deadline;
         this.workers = workers;
         this.duration = duration;
         this.hours = hours;
         this.company = company;
+        this.currentComputer = this.company.getStandard();
         this.boards = boards;
         this.cpus = cpus;
         this.rams = rams;
@@ -46,6 +54,10 @@ public class Simulation {
     
     public int getHourCounter() {
         return hourCounter;
+    }
+    
+    public int getProdCounter() {
+        return prodCounter;
     }
     
     public int getDeadline() {
@@ -66,6 +78,10 @@ public class Simulation {
 
     public Company getCompany() {
         return company;
+    }
+
+    public Computer getCurrentComputer() {
+        return currentComputer;
     }
 
     public Production getBoards() {
@@ -99,6 +115,10 @@ public class Simulation {
     public void setHourCounter(int hourCounter) {
         this.hourCounter = hourCounter;
     }
+
+    public void setProdCounter(int prodCounter) {
+        this.prodCounter = prodCounter;
+    }
     
     public void setDeadline(int deadline) {
         this.deadline = deadline;
@@ -120,6 +140,10 @@ public class Simulation {
         this.company = company;
     }
 
+    public void setCurrentComputer(Computer currentComputer) {
+        this.currentComputer = currentComputer;
+    }
+    
     public void setBoards(Production boards) {
         this.boards = boards;
     }
@@ -152,13 +176,48 @@ public class Simulation {
     }
     
     public void runHour() {
+        // Producciones
         this.boards.produce();
         this.cpus.produce();
         this.rams.produce();
         this.supplies.produce();
         this.gpus.produce();
-        this.computers.produce();
         
+        if(
+            this.boards.getInventory() >= this.currentComputer.getRecipe().get(0) && 
+            this.cpus.getInventory() >= this.currentComputer.getRecipe().get(1) && 
+            this.rams.getInventory() >= this.currentComputer.getRecipe().get(2) && 
+            this.supplies.getInventory() >= this.currentComputer.getRecipe().get(3) && 
+            this.gpus.getInventory() >= this.currentComputer.getRecipe().get(4) ){
+            
+            this.computers.produce();
+            this.boards.setInventory(this.boards.getInventory() - this.currentComputer.getRecipe().get(0));
+            this.cpus.setInventory(this.cpus.getInventory() - this.currentComputer.getRecipe().get(1));
+            this.rams.setInventory(this.rams.getInventory() - this.currentComputer.getRecipe().get(2));
+            this.supplies.setInventory(this.supplies.getInventory() - this.currentComputer.getRecipe().get(3));
+            this.gpus.setInventory(this.gpus.getInventory() - this.currentComputer.getRecipe().get(4));
+            if (this.currentComputer.isType()) {
+                this.accSpecial += 1;
+            } else {
+                this.accStandard += 1;
+            }
+            this.prodCounter += 1;
+        }
+            
+        if(this.prodCounter >= this.currentComputer.getBatch()){
+            this.setProdCounter(0);
+            if(!this.currentComputer.isType()){
+                this.setCurrentComputer(this.company.getSpecial());
+            } else {
+                this.setCurrentComputer(this.company.getStandard());
+            }
+        }
+        
+        // Manager
+        
+        // Director
+        
+        // Tiempos
         if (this.hourCounter <= 22) {
             this.hourCounter += 1;
         } else {
@@ -168,16 +227,23 @@ public class Simulation {
     }
     
     public void runDay() {
+        // Nominas
+        this.company.payroll(this.boards.getFinalPay() + this.cpus.getFinalPay() + this.rams.getFinalPay() + this.supplies.getFinalPay() + this.gpus.getFinalPay(), this.company.getDirector().isPenaltyAccredited(), this.company.getDirector().getCountPenalty());
+        this.company.getDirector().setPenaltyAccredited(false);
+        
+        // Tiempos
         if (this.dayCounter >= 1) {
             this.dayCounter -= 1;  
         } else {
             this.setHourCounter(this.getDeadline());
             this.runMonth();
-        }
-        
+        }   
     }
     
     public void runMonth() {
-        
+        this.company.distribute(this.computers, accStandard, accSpecial);
+        this.accStandard = 0;
+        this.accSpecial = 0;
+        this.setDayCounter(this.deadline);
     }
 }

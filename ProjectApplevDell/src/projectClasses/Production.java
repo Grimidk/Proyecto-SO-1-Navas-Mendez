@@ -128,13 +128,13 @@ public class Production {
     }
     
     public void produce () {
-        if (this.isRequirementsMet() && this.getRemainingInventory() > 0) {
+        if (this.getRemainingInventory() > 0) {
             if(this.getRemainingInventory() >= this.getFinalRate()) {
                 this.setInventory(this.inventory + this.getFinalRate());
             } else {
                 this.setInventory(this.inventory + this.getRemainingInventory());           
             }
             this.counter += 1;
-        }
+        } 
     }
 }
