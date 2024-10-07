@@ -15,19 +15,21 @@ public class Director {
     private int timeShipping;
     private int countPenalty;
     private int checkHour;
+    private int totalPenalties;
 
     // CONSTRUCTOR
-    public Director(int wage, boolean penaltyAccredited, int threshold, int timeShipping, int countPenalty, int checkHour) {
+    public Director(int wage, boolean penaltyAccredited, int threshold, int timeShipping, int countPenalty, int checkHour, int totalPenalties) {
         this.wage = wage;
-        this.penaltyAccredited = penaltyAccredited;
+        this.penaltyAccredited = false;
         this.threshold = threshold;
         this.timeShipping = timeShipping;
-        this.countPenalty = countPenalty;
+        this.countPenalty = 0;
         this.checkHour = 0;
+        this.totalPenalties = 0;
     }
     
-    // FUNCTIONS
     
+    // FUNCTIONS
     public boolean distributing(){
         return true;
     }
@@ -42,6 +44,7 @@ public class Director {
                 this.penaltyAccredited = !isWorking;
                 if (!isWorking){
                     this.countPenalty += 1;
+                    this.totalPenalties +=1;
                 }
         }
     }
@@ -96,5 +99,13 @@ public class Director {
 
     public void setCheckHour(int checkHour) {
         this.checkHour = checkHour;
+    }
+
+    public int getTotalPenalties() {
+        return totalPenalties;
+    }
+
+    public void setTotalPenalties(int totalPenalties) {
+        this.totalPenalties = totalPenalties;
     }
 }

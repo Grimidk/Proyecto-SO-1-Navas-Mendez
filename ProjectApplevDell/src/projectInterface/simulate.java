@@ -31,58 +31,25 @@ public class Simulate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        runSim = new javax.swing.JButton();
         back = new javax.swing.JButton();
-        startSim = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        runSim.setText("Correr Simulación");
+        jPanel1.add(runSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
 
         back.setText("Regresar");
-        back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
-            }
-        });
+        jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
 
-        startSim.setText("Iniciar Simulacion");
-        startSim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startSimActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(360, 360, 360)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(startSim, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                .addContainerGap(350, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
-                .addComponent(startSim)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(back)
-                .addGap(221, 221, 221))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        Init ini = new Init();
-        ini.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_backActionPerformed
-
-    private void startSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startSimActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startSimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +91,7 @@ public class Simulate extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JButton startSim;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton runSim;
     // End of variables declaration//GEN-END:variables
 }
