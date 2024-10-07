@@ -16,13 +16,13 @@ public class Company {
     private Computer special;
     private int money;
 
-    public Company(String name, Director director, Manager manager, Computer standard, Computer special, int money) {
+    public Company(String name, Director director, Manager manager, Computer standard, Computer special) {
         this.name = name;
         this.director = director;
         this.manager = manager;
         this.standard = standard;
         this.special = special;
-        this.money = money;
+        this.money = 0;
     }
 
     public String getName() {

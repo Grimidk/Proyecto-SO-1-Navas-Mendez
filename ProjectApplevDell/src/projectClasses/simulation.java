@@ -17,6 +17,7 @@ public class Simulation {
     private int accSpecial;
     private int deadline;
     private int workers;
+    private int workerCost;
     private int duration;
     private int workHours;
     private Company company;
@@ -28,7 +29,7 @@ public class Simulation {
     private Production gpus;
     private Production computers;
 
-    public Simulation(int deadline, int workers, int duration, int workHours, Company company, Production boards, Production cpus, Production rams, Production supplies, Production gpus, Production computers) {
+    public Simulation(int deadline, int workers, int workerCost, int duration, int workHours, Company company, Production boards, Production cpus, Production rams, Production supplies, Production gpus, Production computers) {
         this.dayCounter = deadline;
         this.hourCounter = 0;
         this.prodCounter = 0;
@@ -36,6 +37,7 @@ public class Simulation {
         this.accSpecial = 0;
         this.deadline = deadline;
         this.workers = workers;
+        this.workerCost = workerCost;
         this.duration = duration;
         this.workHours = workHours;
         this.company = company;
@@ -59,6 +61,14 @@ public class Simulation {
     public int getProdCounter() {
         return prodCounter;
     }
+
+    public int getAccStandard() {
+        return accStandard;
+    }
+
+    public int getAccSpecial() {
+        return accSpecial;
+    }
     
     public int getDeadline() {
         return deadline;
@@ -74,6 +84,10 @@ public class Simulation {
 
     public int getWorkHours() {
         return workHours;
+    }
+
+    public int getWorkerCost() {
+        return workerCost;
     }
 
     public Company getCompany() {
@@ -119,6 +133,14 @@ public class Simulation {
     public void setProdCounter(int prodCounter) {
         this.prodCounter = prodCounter;
     }
+
+    public void setAccStandard(int accStandard) {
+        this.accStandard = accStandard;
+    }
+
+    public void setAccSpecial(int accSpecial) {
+        this.accSpecial = accSpecial;
+    }
     
     public void setDeadline(int deadline) {
         this.deadline = deadline;
@@ -126,6 +148,10 @@ public class Simulation {
 
     public void setWorkers(int workers) {
         this.workers = workers;
+    }
+
+    public void setWorkerCost(int workerCost) {
+        this.workerCost = workerCost;
     }
 
     public void setDuration(int duration) {
@@ -226,6 +252,7 @@ public class Simulation {
             this.setHourCounter(0);
             this.runDay();
         }
+        System.out.println("Hour");
     }
     
     public void runDay() {
@@ -241,6 +268,7 @@ public class Simulation {
             this.setHourCounter(this.getDeadline());
             this.runMonth();
         }   
+        System.out.println("Day");
     }
     
     public void runMonth() {
@@ -249,5 +277,6 @@ public class Simulation {
         this.accStandard = 0;
         this.accSpecial = 0;
         this.setDayCounter(this.deadline);
+        System.out.println("Month");
     }
 }

@@ -14,9 +14,9 @@ import projectInterface.Init;
 public class App {
     public static void start(){
         String path = "./../../Proyecto-SO-1-Navas-Mendez/data.json";
-        String name = "apple";
-        String simu = JsonReader.reader(path, name);
-        System.out.println(simu);
+        String name = "Apple";
+        Simulation simu = JsonReader.reader(path, name);
+        simu.run();
         Init ini = new Init();
         ini.setVisible(true);
     }

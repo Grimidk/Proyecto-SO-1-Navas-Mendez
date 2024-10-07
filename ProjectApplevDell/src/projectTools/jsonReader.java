@@ -15,7 +15,7 @@ import java.io.Reader;
  * @author juanmendezl
  */
 public class JsonReader {
-    public static String reader(String file, String name) {
+    public static Simulation reader(String file, String name) {
         Gson gson = new Gson();
         try (Reader reader = new FileReader(file)) {
             
@@ -159,10 +159,39 @@ public class JsonReader {
             Production gpus = new Production("Gpus", dataGpuPay, dataGpuRate, dataGpuCap, dataGpuWorkers);
             Production computers = new Production("Computers", dataComputerPay, dataComputerRate, dataComputerCap, dataComputerWorkers);
             Manager manager = new Manager(dataManagerPay, dataManagerCounter, dataManagerWork, dataManagerInterval,dataManagerPenalty);
-//            Director director = new Director(dataDirectorPay,,dataDirectorThreshold,dataDirectorDistribute,,);
-
-                    
-            return gson.toJson(dataHpSpecialRecipeSupply);
+            Director director = new Director(dataDirectorPay,dataDirectorThreshold,dataDirectorDistribute);
+            
+            if ("Apple".equals(name)){
+                Computer standard = new Computer(false, dataAppleStandardRecipeBoard, dataAppleStandardRecipeCpu, dataAppleStandardRecipeRam, dataAppleStandardRecipeSupply, dataAppleStandardRecipeGpu, dataAppleStandardRecipeBatch, dataAppleStandardPrice);
+                Computer special = new Computer(false, dataAppleSpecialRecipeBoard, dataAppleSpecialRecipeCpu, dataAppleSpecialRecipeRam, dataAppleSpecialRecipeSupply, dataAppleSpecialRecipeGpu, dataAppleSpecialRecipeBatch, dataAppleSpecialPrice);
+                Company company = new Company(dataAppleName, director, manager, standard, special);
+                Simulation simulation = new Simulation(dataDeadline, dataTotalWorkers, dataWorkerCost, dataDuration, dataHours, company, boards, cpus, rams, supplies, gpus, computers);
+                return simulation;
+            } else if ("Dell".equals(name)) {
+                Computer standard = new Computer(false, dataDellStandardRecipeBoard, dataDellStandardRecipeCpu, dataDellStandardRecipeRam, dataDellStandardRecipeSupply, dataDellStandardRecipeGpu, dataDellStandardRecipeBatch, dataDellStandardPrice);
+                Computer special = new Computer(false, dataDellSpecialRecipeBoard, dataDellSpecialRecipeCpu, dataDellSpecialRecipeRam, dataDellSpecialRecipeSupply, dataDellSpecialRecipeGpu, dataDellSpecialRecipeBatch, dataDellSpecialPrice);
+                Company company = new Company(dataDellName, director, manager, standard, special);
+                Simulation simulation = new Simulation(dataDeadline, dataTotalWorkers, dataWorkerCost, dataDuration, dataHours, company, boards, cpus, rams, supplies, gpus, computers);
+                return simulation;
+            } else if ("Msi".equals(name)) {
+                Computer standard = new Computer(false, dataMsiStandardRecipeBoard, dataMsiStandardRecipeCpu, dataMsiStandardRecipeRam, dataMsiStandardRecipeSupply, dataMsiStandardRecipeGpu, dataMsiStandardRecipeBatch, dataMsiStandardPrice);
+                Computer special = new Computer(false, dataMsiSpecialRecipeBoard, dataMsiSpecialRecipeCpu, dataMsiSpecialRecipeRam, dataMsiSpecialRecipeSupply, dataMsiSpecialRecipeGpu, dataMsiSpecialRecipeBatch, dataMsiSpecialPrice);
+                Company company = new Company(dataMsiName, director, manager, standard, special);
+                Simulation simulation = new Simulation(dataDeadline, dataTotalWorkers, dataWorkerCost, dataDuration, dataHours, company, boards, cpus, rams, supplies, gpus, computers);
+                return simulation;
+            } else if ("Hp".equals(name)) {
+                Computer standard = new Computer(false, dataHpStandardRecipeBoard, dataHpStandardRecipeCpu, dataHpStandardRecipeRam, dataHpStandardRecipeSupply, dataHpStandardRecipeGpu, dataHpStandardRecipeBatch, dataHpStandardPrice);
+                Computer special = new Computer(false, dataHpSpecialRecipeBoard, dataHpSpecialRecipeCpu, dataHpSpecialRecipeRam, dataHpSpecialRecipeSupply, dataHpSpecialRecipeGpu, dataHpSpecialRecipeBatch, dataHpSpecialPrice);
+                Company company = new Company(dataHpName, director, manager, standard, special);
+                Simulation simulation = new Simulation(dataDeadline, dataTotalWorkers, dataWorkerCost, dataDuration, dataHours, company, boards, cpus, rams, supplies, gpus, computers);
+                return simulation;
+            } else {
+                Computer standard = null;
+                Computer special = null;
+                Company company = null;
+                Simulation simulation = null;
+                return simulation;
+            }
         
         } catch (IOException e) {
             throw new RuntimeException(e);

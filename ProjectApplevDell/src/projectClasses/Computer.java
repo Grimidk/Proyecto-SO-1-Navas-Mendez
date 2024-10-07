@@ -10,7 +10,7 @@ import auxClasses.LinkedList;
  * @author Svet
  */
 public class Computer {
-    private boolean type; // 0 para normal 1 para especial
+    private boolean type; // false para normal true para especial
     private int numBoard;
     private int numCpu;
     private int numRam;
