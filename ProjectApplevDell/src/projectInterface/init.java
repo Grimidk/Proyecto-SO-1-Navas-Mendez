@@ -30,7 +30,6 @@ public class Init extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         exitButton = new javax.swing.JButton();
         ConfigButton = new javax.swing.JButton();
-        simButton = new javax.swing.JButton();
         compButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -38,10 +37,11 @@ public class Init extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        simChoice = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        simToggle = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,9 +64,6 @@ public class Init extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ConfigButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
-
-        simButton.setText("Simulación");
-        jPanel1.add(simButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, -1, -1));
 
         compButton.setText("Comparación");
         compButton.addActionListener(new java.awt.event.ActionListener() {
@@ -102,8 +99,13 @@ public class Init extends javax.swing.JFrame {
         jLabel7.setText("y como se comparan entre ellas");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apple", "Dell" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
+        simChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apple", "Dell" }));
+        simChoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simChoiceActionPerformed(evt);
+            }
+        });
+        jPanel1.add(simChoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,6 +121,14 @@ public class Init extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Personaliza la simulación");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 200, -1));
+
+        simToggle.setText("Simulación");
+        simToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                simToggleActionPerformed(evt);
+            }
+        });
+        jPanel1.add(simToggle, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectInterface/fondoMac.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -145,6 +155,21 @@ public class Init extends javax.swing.JFrame {
         Compare com = new Compare(this);
         this.dispose();
     }//GEN-LAST:event_compButtonActionPerformed
+
+    private void simChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simChoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_simChoiceActionPerformed
+
+    private void simToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simToggleActionPerformed
+        // TODO add your handling code here:
+        if (simChoice.getSelectedIndex()==0){
+            Apple ap = new Apple(this);
+            this.dispose();
+        } else {
+            Dell de = new Dell(this);
+            this.dispose();
+        }
+    }//GEN-LAST:event_simToggleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,7 +209,6 @@ public class Init extends javax.swing.JFrame {
     private javax.swing.JButton ConfigButton;
     private javax.swing.JButton compButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -196,6 +220,7 @@ public class Init extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton simButton;
+    private javax.swing.JComboBox<String> simChoice;
+    private javax.swing.JToggleButton simToggle;
     // End of variables declaration//GEN-END:variables
 }
