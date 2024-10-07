@@ -18,7 +18,7 @@ public class Simulation {
     private int deadline;
     private int workers;
     private int duration;
-    private int hours;
+    private int workHours;
     private Company company;
     private Computer currentComputer;
     private Production boards;
@@ -28,7 +28,7 @@ public class Simulation {
     private Production gpus;
     private Production computers;
 
-    public Simulation(int deadline, int workers, int duration, int hours, Company company, Production boards, Production cpus, Production rams, Production supplies, Production gpus, Production computers) {
+    public Simulation(int deadline, int workers, int duration, int workHours, Company company, Production boards, Production cpus, Production rams, Production supplies, Production gpus, Production computers) {
         this.dayCounter = deadline;
         this.hourCounter = 0;
         this.prodCounter = 0;
@@ -37,7 +37,7 @@ public class Simulation {
         this.deadline = deadline;
         this.workers = workers;
         this.duration = duration;
-        this.hours = hours;
+        this.workHours = workHours;
         this.company = company;
         this.currentComputer = this.company.getStandard();
         this.boards = boards;
@@ -72,8 +72,8 @@ public class Simulation {
         return duration;
     }
 
-    public int getHours() {
-        return hours;
+    public int getWorkHours() {
+        return workHours;
     }
 
     public Company getCompany() {
@@ -132,8 +132,8 @@ public class Simulation {
         this.duration = duration;
     }
 
-    public void setHours(int hours) {
-        this.hours = hours;
+    public void setWorkHours(int workHours) {
+        this.workHours = workHours;
     }
 
     public void setCompany(Company company) {
@@ -214,8 +214,10 @@ public class Simulation {
         }
         
         // Manager
+        this.company.getManager().runManager(this.hourCounter);
         
         // Director
+        this.company.getDirector().runDirector(this.hourCounter, this.dayCounter, this.company.getManager());
         
         // Tiempos
         if (this.hourCounter <= 22) {
@@ -229,6 +231,7 @@ public class Simulation {
     public void runDay() {
         // Nominas
         this.company.payroll(this.boards.getFinalPay() + this.cpus.getFinalPay() + this.rams.getFinalPay() + this.supplies.getFinalPay() + this.gpus.getFinalPay());
+        this.company.getDirector().setCountPenalty(0);
         this.company.getDirector().setPenaltyAccredited(false);
         
         // Tiempos
@@ -241,6 +244,7 @@ public class Simulation {
     }
     
     public void runMonth() {
+        // Distribucion
         this.company.distribute(this.computers, accStandard, accSpecial);
         this.accStandard = 0;
         this.accSpecial = 0;
