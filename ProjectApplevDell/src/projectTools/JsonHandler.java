@@ -4,18 +4,19 @@
  */
 package projectTools;
 import projectClasses.*;
-import auxClasses.*;
 
 import com.google.gson.*;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.FileWriter;
 import java.io.Reader;
+import java.io.Writer;
+import java.io.IOException;
 
 /**
  *
  * @author juanmendezl
  */
-public class JsonReader {
+public class JsonHandler {
     public static Simulation reader(String file, String name) {
         Gson gson = new Gson();
         try (Reader reader = new FileReader(file)) {
@@ -201,7 +202,17 @@ public class JsonReader {
         }
     }
     
-    public static void writer(String path, String name, LinkedList list){
+    public static void writer(String file, int dataDuration, int dataDeadline, int dataHours, int dataTotalWorkers, int dataWorkerCost, int dataStartingMoney, int dataAppleBoardsWorkers, int dataAppleCpuWorkers, int dataAppleRamWorkers, int dataAppleGpuWorkers, int dataAppleSupplyWorkers, int dataAppleComputerWorkers, int dataDellBoardsWorkers, int dataDellCpuWorkers, int dataDellRamWorkers, int dataDellGpuWorkers, int dataDellSupplyWorkers, int dataDellComputerWorkers){
         Gson gson = new Gson();
+
+        AuxJson obj = new AuxJson(dataDuration, dataDeadline, dataHours, dataTotalWorkers, dataWorkerCost, dataStartingMoney, dataAppleBoardsWorkers, dataAppleCpuWorkers, dataAppleRamWorkers, dataAppleGpuWorkers, dataAppleSupplyWorkers, dataAppleComputerWorkers, dataDellBoardsWorkers, dataDellCpuWorkers, dataDellRamWorkers, dataDellGpuWorkers, dataDellSupplyWorkers, dataDellComputerWorkers);
+
+        String json = gson.toJson(obj);
+        
+        try (Writer writer = new FileWriter(file)) {
+            gson.toJson(json, writer);
+        } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
     }
 }

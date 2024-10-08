@@ -18,11 +18,13 @@ public class Hilo extends Thread{
     private Simulation simu;
     private float delay;
     private Semaphore sema;
+    private boolean killSwitch;
     
     public Hilo (Simulation simu, int permits){
         this.simu = simu;
         this.delay = (simu.getDuration()*1000)/24;
         this.sema = new Semaphore(permits);
+        this.killSwitch = false;
     }
 
     public Simulation getSimu() {
@@ -48,19 +50,36 @@ public class Hilo extends Thread{
     public void setMutex(Semaphore sema) {
         this.sema = sema;
     }
+
+    public Semaphore getSema() {
+        return sema;
+    }
+
+    public void setSema(Semaphore sema) {
+        this.sema = sema;
+    }
+
+    public boolean isKillSwitch() {
+        return killSwitch;
+    }
+
+    public void setKillSwitch(boolean killSwitch) {
+        this.killSwitch = killSwitch;
+    }
     
     @Override
     public void run(){
-        while (true){
+        while (!this.killSwitch){
             
             try{
-                this.sema.acquire(); //wait
+                this.sema.acquire();
                 
-                this.simu.runHour(); //crit
+                this.simu.runHour();
                 sleep((long) (delay));
                 
                 this.sema.release();
                 sleep((long) (delay));
+                
             }catch (InterruptedException e){
                 throw new RuntimeException(e);
             }
