@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projectClasses;
-import java.util.Calendar;
 
 /**
  *
@@ -12,6 +11,8 @@ import java.util.Calendar;
 public class Simulation {
     private int dayCounter;
     private int hourCounter;
+    private int totalDayCounter;
+    private int monthCounter;
     private int prodCounter;
     private int accStandard;
     private int accSpecial;
@@ -26,6 +27,8 @@ public class Simulation {
     public Simulation(int deadline, int workers, int workerCost, int duration, int workHours, Company company) {
         this.dayCounter = deadline;
         this.hourCounter = 0;
+        this.totalDayCounter = 0;
+        this.monthCounter = 0;
         this.prodCounter = 0;
         this.accStandard = 0;
         this.accSpecial = 0;
@@ -133,15 +136,26 @@ public class Simulation {
     public void setCurrentComputer(Computer currentComputer) {
         this.currentComputer = currentComputer;
     }
-    
-    public void run() {
-        int miliseconds = Calendar.getInstance().get(Calendar.MILLISECOND);
-        while ((miliseconds%(1000*this.duration)) == 0) {
-            this.runHour();
-        }
+
+    public int getTotalDayCounter() {
+        return totalDayCounter;
+    }
+
+    public void setTotalDayCounter(int totalDayCounter) {
+        this.totalDayCounter = totalDayCounter;
+    }
+
+    public int getMonthCounter() {
+        return monthCounter;
+    }
+
+    public void setMonthCounter(int monthCounter) {
+        this.monthCounter = monthCounter;
     }
     
     public void runHour() {
+        System.out.println("Hour: " + this.hourCounter);
+        System.out.println("Money: " + this.company.getMoney());
         // Producciones
         this.company.getBoards().produce();
         this.company.getCpus().produce();
@@ -192,10 +206,11 @@ public class Simulation {
             this.setHourCounter(0);
             this.runDay();
         }
-        System.out.println("Hour");
     }
     
     public void runDay() {
+        System.out.println("Day: " + this.totalDayCounter);
+        this.totalDayCounter += 1;
         // Nominas
         this.company.payroll();
         this.company.getDirector().setCountPenalty(0);
@@ -208,15 +223,17 @@ public class Simulation {
             this.setHourCounter(this.getDeadline());
             this.runMonth();
         }   
-        System.out.println("Day");
+        
     }
     
     public void runMonth() {
+        System.out.println("Month: " + this.monthCounter);
+        this.monthCounter += 1;
         // Distribucion
         this.company.distribute(accStandard, accSpecial);
         this.accStandard = 0;
         this.accSpecial = 0;
         this.setDayCounter(this.deadline);
-        System.out.println("Month");
+        
     }
 }

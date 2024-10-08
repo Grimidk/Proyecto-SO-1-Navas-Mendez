@@ -5,7 +5,8 @@
       "deadline": 30,
       "hours": 24,
       "totalWorkers": 12,
-      "workerCost": 10000
+      "workerCost": 10000,
+      "startingMoney": 0
     },
     "companies": {
       "apple": {
@@ -15,37 +16,37 @@
             "pay": 20,
             "rate": 0.5,
             "cap": 25,
-            "workers": 0
+            "workers": 1
           },
           "cpu": {
             "pay": 26,
             "rate": 0.5,
             "cap": 20,
-            "workers": 0
+            "workers": 1
           },
           "ram": {
             "pay": 40,
             "rate": 3,
             "cap": 55,
-            "workers": 0
+            "workers": 1
           },
           "supply": {
             "pay": 16,
             "rate": 3,
             "cap": 35,
-            "workers": 0
+            "workers": 1
           },
           "gpu": {
             "pay": 34,
             "rate": 0.3333,
             "cap": 10,
-            "workers": 0
+            "workers": 1
           },
           "computer": {
             "pay": 50,
             "rate": 0.5,
             "cap": -1,
-            "workers": 0
+            "workers": 1
           }
         },
         "manager": {
@@ -94,37 +95,37 @@
             "pay": 20,
             "rate": 0.5,
             "cap": 25,
-            "workers": 0
+            "workers": 1
           },
           "cpu": {
             "pay": 26,
             "rate": 0.5,
             "cap": 20,
-            "workers": 0
+            "workers": 1
           },
           "ram": {
             "pay": 40,
             "rate": 3,
             "cap": 55,
-            "workers": 0
+            "workers": 1
           },
           "supply": {
             "pay": 16,
             "rate": 3,
             "cap": 35,
-            "workers": 0
+            "workers": 1
           },
           "gpu": {
             "pay": 34,
             "rate": 0.3333,
             "cap": 10,
-            "workers": 0
+            "workers": 1
           },
           "computer": {
             "pay": 50,
             "rate": 0.5,
             "cap": -1,
-            "workers": 0
+            "workers": 1
           }
         },
         "manager": {

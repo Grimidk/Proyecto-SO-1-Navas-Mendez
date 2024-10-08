@@ -29,6 +29,7 @@ public class JsonReader {
                         int dataHours = dataConsts.getAsJsonPrimitive("hours").getAsInt();
                         int dataTotalWorkers = dataConsts.getAsJsonPrimitive("totalWorkers").getAsInt();
                         int dataWorkerCost = dataConsts.getAsJsonPrimitive("workerCost").getAsInt();
+                        int dataStartingMoney = dataConsts.getAsJsonPrimitive("startingMoney").getAsInt();
                     JsonObject dataCompanies = dataSimulation.getAsJsonObject("companies");
                 
                         JsonObject dataApple = dataCompanies.getAsJsonObject("apple");
@@ -173,6 +174,7 @@ public class JsonReader {
                 Manager manager = new Manager(dataAppleManagerPay, dataAppleManagerCounter, dataAppleManagerWork, dataAppleManagerInterval,dataAppleManagerPenalty);
                 Director director = new Director(dataAppleDirectorPay,dataAppleDirectorThreshold,dataAppleDirectorDistribute);
                 Company company = new Company(dataAppleName, director, manager, standard, special, boards, cpus, rams, supplies, gpus, computers);
+                company.setMoney(dataStartingMoney);
                 Simulation simulation = new Simulation(dataDeadline, dataTotalWorkers, dataWorkerCost, dataDuration, dataHours, company);
                 return simulation;
             } else if ("Dell".equals(name)) {
@@ -187,6 +189,7 @@ public class JsonReader {
                 Manager manager = new Manager(dataDellManagerPay, dataDellManagerCounter, dataDellManagerWork, dataDellManagerInterval,dataDellManagerPenalty);
                 Director director = new Director(dataDellDirectorPay,dataDellDirectorThreshold,dataDellDirectorDistribute);
                 Company company = new Company(dataDellName, director, manager, standard, special, boards, cpus, rams, supplies, gpus, computers);
+                company.setMoney(dataStartingMoney);
                 Simulation simulation = new Simulation(dataDeadline, dataTotalWorkers, dataWorkerCost, dataDuration, dataHours, company);
                 return simulation;
             } else {
