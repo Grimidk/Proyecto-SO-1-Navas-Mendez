@@ -120,11 +120,7 @@ public class Production {
     }
     
     public boolean isRequirementsMet (){
-        if (this.requirements == null){
-            return true;
-        } else {
-            return false;
-        }
+        return this.requirements == null;
     }
     
     public void produce () {

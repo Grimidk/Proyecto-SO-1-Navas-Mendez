@@ -22,14 +22,8 @@ public class Simulation {
     private int workHours;
     private Company company;
     private Computer currentComputer;
-    private Production boards;
-    private Production cpus;
-    private Production rams;
-    private Production supplies;
-    private Production gpus;
-    private Production computers;
 
-    public Simulation(int deadline, int workers, int workerCost, int duration, int workHours, Company company, Production boards, Production cpus, Production rams, Production supplies, Production gpus, Production computers) {
+    public Simulation(int deadline, int workers, int workerCost, int duration, int workHours, Company company) {
         this.dayCounter = deadline;
         this.hourCounter = 0;
         this.prodCounter = 0;
@@ -42,12 +36,6 @@ public class Simulation {
         this.workHours = workHours;
         this.company = company;
         this.currentComputer = this.company.getStandard();
-        this.boards = boards;
-        this.cpus = cpus;
-        this.rams = rams;
-        this.supplies = supplies;
-        this.gpus = gpus;
-        this.computers = computers;
     }
     
     public int getDayCounter() {
@@ -96,30 +84,6 @@ public class Simulation {
 
     public Computer getCurrentComputer() {
         return currentComputer;
-    }
-
-    public Production getBoards() {
-        return boards;
-    }
-
-    public Production getCpus() {
-        return cpus;
-    }
-
-    public Production getRams() {
-        return rams;
-    }
-
-    public Production getSupplies() {
-        return supplies;
-    }
-
-    public Production getGpus() {
-        return gpus;
-    }
-
-    public Production getComputers() {
-        return computers;
     }
     
     public void setDayCounter(int dayCounter) {
@@ -170,30 +134,6 @@ public class Simulation {
         this.currentComputer = currentComputer;
     }
     
-    public void setBoards(Production boards) {
-        this.boards = boards;
-    }
-
-    public void setCpus(Production cpus) {
-        this.cpus = cpus;
-    }
-
-    public void setRams(Production rams) {
-        this.rams = rams;
-    }
-
-    public void setSupplies(Production supplies) {
-        this.supplies = supplies;
-    }
-
-    public void setGpus(Production gpus) {
-        this.gpus = gpus;
-    }
-
-    public void setComputers(Production computers) {
-        this.computers = computers;
-    }
-    
     public void run() {
         int miliseconds = Calendar.getInstance().get(Calendar.MILLISECOND);
         while ((miliseconds%(1000*this.duration)) == 0) {
@@ -203,25 +143,25 @@ public class Simulation {
     
     public void runHour() {
         // Producciones
-        this.boards.produce();
-        this.cpus.produce();
-        this.rams.produce();
-        this.supplies.produce();
-        this.gpus.produce();
+        this.company.getBoards().produce();
+        this.company.getCpus().produce();
+        this.company.getRams().produce();
+        this.company.getSupplies().produce();
+        this.company.getGpus().produce();
         
         if(
-            this.boards.getInventory() >= this.currentComputer.getRecipe().get(0) && 
-            this.cpus.getInventory() >= this.currentComputer.getRecipe().get(1) && 
-            this.rams.getInventory() >= this.currentComputer.getRecipe().get(2) && 
-            this.supplies.getInventory() >= this.currentComputer.getRecipe().get(3) && 
-            this.gpus.getInventory() >= this.currentComputer.getRecipe().get(4) ){
+            this.company.getBoards().getInventory() >= this.currentComputer.getRecipe().get(0) && 
+            this.company.getCpus().getInventory() >= this.currentComputer.getRecipe().get(1) && 
+            this.company.getRams().getInventory() >= this.currentComputer.getRecipe().get(2) && 
+            this.company.getSupplies().getInventory() >= this.currentComputer.getRecipe().get(3) && 
+            this.company.getGpus().getInventory() >= this.currentComputer.getRecipe().get(4) ){
             
-            this.computers.produce();
-            this.boards.setInventory(this.boards.getInventory() - this.currentComputer.getRecipe().get(0));
-            this.cpus.setInventory(this.cpus.getInventory() - this.currentComputer.getRecipe().get(1));
-            this.rams.setInventory(this.rams.getInventory() - this.currentComputer.getRecipe().get(2));
-            this.supplies.setInventory(this.supplies.getInventory() - this.currentComputer.getRecipe().get(3));
-            this.gpus.setInventory(this.gpus.getInventory() - this.currentComputer.getRecipe().get(4));
+            this.company.getComputers().produce();
+            this.company.getBoards().setInventory(this.company.getBoards().getInventory() - this.currentComputer.getRecipe().get(0));
+            this.company.getCpus().setInventory(this.company.getCpus().getInventory() - this.currentComputer.getRecipe().get(1));
+            this.company.getRams().setInventory(this.company.getRams().getInventory() - this.currentComputer.getRecipe().get(2));
+            this.company.getSupplies().setInventory(this.company.getSupplies().getInventory() - this.currentComputer.getRecipe().get(3));
+            this.company.getGpus().setInventory(this.company.getGpus().getInventory() - this.currentComputer.getRecipe().get(4));
             if (this.currentComputer.isType()) {
                 this.accSpecial += 1;
             } else {
@@ -257,7 +197,7 @@ public class Simulation {
     
     public void runDay() {
         // Nominas
-        this.company.payroll(this.boards.getFinalPay() + this.cpus.getFinalPay() + this.rams.getFinalPay() + this.supplies.getFinalPay() + this.gpus.getFinalPay());
+        this.company.payroll();
         this.company.getDirector().setCountPenalty(0);
         this.company.getDirector().setPenaltyAccredited(false);
         
@@ -273,7 +213,7 @@ public class Simulation {
     
     public void runMonth() {
         // Distribucion
-        this.company.distribute(this.computers, accStandard, accSpecial);
+        this.company.distribute(accStandard, accSpecial);
         this.accStandard = 0;
         this.accSpecial = 0;
         this.setDayCounter(this.deadline);
