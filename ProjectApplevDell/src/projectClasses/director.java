@@ -18,7 +18,7 @@ public class Director {
     private int totalPenalties;
 
     // CONSTRUCTOR
-    public Director(int wage, boolean penaltyAccredited, int threshold, int timeShipping, int countPenalty, int checkHour, int totalPenalties) {
+    public Director(int wage, int threshold, int timeShipping) {
         this.wage = wage;
         this.penaltyAccredited = false;
         this.threshold = threshold;

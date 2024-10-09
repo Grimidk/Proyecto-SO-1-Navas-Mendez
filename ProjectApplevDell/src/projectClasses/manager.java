@@ -12,11 +12,11 @@ public class Manager {
     private int pay;
     private int countedHours;
     private int workedHours;
-    private int timeInterval;
+    private double timeInterval;
     private int penaltyAmount;
 
     // CONSTRUCTOR
-    public Manager(int pay, int countedHours, int workedHours, int timeInterval, int penaltyAmount) {
+    public Manager(int pay, int countedHours, int workedHours, double timeInterval, int penaltyAmount) {
         this.pay = pay;
         this.countedHours = countedHours;
         this.workedHours = workedHours;
@@ -75,11 +75,11 @@ public class Manager {
         this.workedHours = workedHours;
     }
 
-    public int getTimeInterval() {
+    public double getTimeInterval() {
         return timeInterval;
     }
 
-    public void setTimeInterval(int timeInterval) {
+    public void setTimeInterval(double timeInterval) {
         this.timeInterval = timeInterval;
     }
 

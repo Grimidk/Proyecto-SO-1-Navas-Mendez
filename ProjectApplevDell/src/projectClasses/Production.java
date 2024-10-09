@@ -120,21 +120,17 @@ public class Production {
     }
     
     public boolean isRequirementsMet (){
-        if (this.requirements == null){
-            return true;
-        } else {
-            return false;
-        }
+        return this.requirements == null;
     }
     
     public void produce () {
-        if (this.isRequirementsMet() && this.getRemainingInventory() > 0) {
+        if (this.getRemainingInventory() > 0) {
             if(this.getRemainingInventory() >= this.getFinalRate()) {
                 this.setInventory(this.inventory + this.getFinalRate());
             } else {
                 this.setInventory(this.inventory + this.getRemainingInventory());           
             }
             this.counter += 1;
-        }
+        } 
     }
 }
