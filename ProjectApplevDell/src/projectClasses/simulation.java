@@ -154,9 +154,8 @@ public class Simulation {
     }
     
     public void runHour() {
-        System.out.println("Hour: " + this.hourCounter);
-        System.out.println("Money: " + this.company.getMoney());
-        // Producciones
+//        System.out.println("Hour: " + this.hourCounter);
+//        System.out.println("Money: " + this.company.getMoney());
         this.company.getBoards().produce();
         this.company.getCpus().produce();
         this.company.getRams().produce();
@@ -170,18 +169,23 @@ public class Simulation {
             this.company.getSupplies().getInventory() >= this.currentComputer.getRecipe().get(3) && 
             this.company.getGpus().getInventory() >= this.currentComputer.getRecipe().get(4) ){
             
-            this.company.getComputers().produce();
-            this.company.getBoards().setInventory(this.company.getBoards().getInventory() - this.currentComputer.getRecipe().get(0));
-            this.company.getCpus().setInventory(this.company.getCpus().getInventory() - this.currentComputer.getRecipe().get(1));
-            this.company.getRams().setInventory(this.company.getRams().getInventory() - this.currentComputer.getRecipe().get(2));
-            this.company.getSupplies().setInventory(this.company.getSupplies().getInventory() - this.currentComputer.getRecipe().get(3));
-            this.company.getGpus().setInventory(this.company.getGpus().getInventory() - this.currentComputer.getRecipe().get(4));
-            if (this.currentComputer.isType()) {
-                this.accSpecial += 1;
-            } else {
-                this.accStandard += 1;
+//            System.out.println("Materials ready");
+            boolean completed = this.company.getComputers().produce();
+            
+            if(completed){
+//                System.out.println("Computer done");
+                this.company.getBoards().setInventory(this.company.getBoards().getInventory() - this.currentComputer.getRecipe().get(0));
+                this.company.getCpus().setInventory(this.company.getCpus().getInventory() - this.currentComputer.getRecipe().get(1));
+                this.company.getRams().setInventory(this.company.getRams().getInventory() - this.currentComputer.getRecipe().get(2));
+                this.company.getSupplies().setInventory(this.company.getSupplies().getInventory() - this.currentComputer.getRecipe().get(3));
+                this.company.getGpus().setInventory(this.company.getGpus().getInventory() - this.currentComputer.getRecipe().get(4));
+                if (this.currentComputer.isType()) {
+                    this.accSpecial += 1;
+                } else {
+                    this.accStandard += 1;
+                }
+                this.prodCounter += 1;
             }
-            this.prodCounter += 1;
         }
             
         if(this.prodCounter >= this.currentComputer.getBatch()){
@@ -192,7 +196,7 @@ public class Simulation {
                 this.setCurrentComputer(this.company.getStandard());
             }
         }
-        
+      
         // Manager
         this.company.getManager().runManager(this.hourCounter);
         
@@ -209,7 +213,13 @@ public class Simulation {
     }
     
     public void runDay() {
-        System.out.println("Day: " + this.totalDayCounter);
+//        System.out.println("Day: " + this.totalDayCounter);
+//        System.out.println("Boards:" + this.company.getBoards().getInventory());
+//        System.out.println("Cpus:" + this.company.getCpus().getInventory());
+//        System.out.println("Rams:" + this.company.getRams().getInventory());
+//        System.out.println("Supplies:" + this.company.getSupplies().getInventory());
+//        System.out.println("Gpus:" + this.company.getGpus().getInventory());
+//        System.out.println("Computers:" + this.company.getComputers().getInventory());
         this.totalDayCounter += 1;
         // Nominas
         this.company.payroll();
@@ -227,7 +237,7 @@ public class Simulation {
     }
     
     public void runMonth() {
-        System.out.println("Month: " + this.monthCounter);
+//         System.out.println("Month: " + this.monthCounter);
         this.monthCounter += 1;
         // Distribucion
         this.company.distribute(accStandard, accSpecial);

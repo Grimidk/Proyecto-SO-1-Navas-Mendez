@@ -20,7 +20,7 @@ public class App {
         String dell = "Dell";
         
         Simulation simu1 = JsonHandler.reader(read, apple);  
-        Simulation simu2 = JsonHandler.reader(read, dell); 
+//        Simulation simu2 = JsonHandler.reader(read, dell); 
         
 //        String write = "./../../Proyecto-SO-1-Navas-Mendez/test.json";
 //        JsonHandler.writer(write, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

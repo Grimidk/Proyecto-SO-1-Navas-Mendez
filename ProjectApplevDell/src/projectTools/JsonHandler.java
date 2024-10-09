@@ -213,6 +213,6 @@ public class JsonHandler {
             gson.toJson(json, writer);
         } catch (IOException e) {
         throw new RuntimeException(e);
-    }
+        }
     }
 }

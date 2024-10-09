@@ -17,12 +17,12 @@ public class Production {
     private double inventory;
     private int workers;
     private LinkedList<Integer> requirements;
-    private int counter;
+    private double counter;
 
     public Production(String name, int pay, double rate, double capacity, int workers) {
         this.name = name;
         this.pay = pay;
-        this.rate = rate;
+        this.rate = rate/24;
         this.capacity = capacity;
         this.workers = workers;
         this.requirements = null;
@@ -32,7 +32,7 @@ public class Production {
     public Production(String name, int pay, double rate, double capacity, int workers, LinkedList requirements) {
         this.name = name;
         this.pay = pay;
-        this.rate = rate;
+        this.rate = rate/24;
         this.capacity = capacity;
         this.workers = workers;
         this.requirements = requirements;
@@ -75,7 +75,7 @@ public class Production {
         return requirements;
     }
     
-    public int getCounter() {
+    public double getCounter() {
         return counter;
     }
 
@@ -107,7 +107,7 @@ public class Production {
         this.requirements = requirements;
     }
     
-    public void setCounter(int counter) {
+    public void setCounter(double counter) {
         this.counter = counter;
     }
     
@@ -123,14 +123,23 @@ public class Production {
         return this.requirements == null;
     }
     
-    public void produce () {
+    public boolean produce () {
         if (this.getRemainingInventory() > 0) {
             if(this.getRemainingInventory() >= this.getFinalRate()) {
-                this.setInventory(this.inventory + this.getFinalRate());
+                this.inventory += this.getFinalRate();
+                this.counter += this.getFinalRate();
             } else {
-                this.setInventory(this.inventory + this.getRemainingInventory());           
+                this.inventory += this.getRemainingInventory();   
+                this.counter += this.getRemainingInventory();
             }
-            this.counter += 1;
-        } 
+            if (this.counter >= 1){
+                this.counter -= 1;
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }
