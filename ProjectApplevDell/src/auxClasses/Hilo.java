@@ -22,7 +22,7 @@ public class Hilo extends Thread{
     
     public Hilo (Simulation simu, int permits){
         this.simu = simu;
-        this.delay = (simu.getDuration()*1000)/24;
+        this.delay = (simu.getDuration()*1000)/48;
         this.sema = new Semaphore(permits);
         this.killSwitch = false;
     }
