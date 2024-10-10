@@ -141,6 +141,7 @@ public class Init extends javax.swing.JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
 

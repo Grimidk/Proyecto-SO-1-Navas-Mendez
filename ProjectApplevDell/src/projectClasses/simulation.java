@@ -213,13 +213,13 @@ public class Simulation {
     }
     
     public void runDay() {
-//        System.out.println("Day: " + this.totalDayCounter);
-//        System.out.println("Boards:" + this.company.getBoards().getInventory());
-//        System.out.println("Cpus:" + this.company.getCpus().getInventory());
-//        System.out.println("Rams:" + this.company.getRams().getInventory());
-//        System.out.println("Supplies:" + this.company.getSupplies().getInventory());
-//        System.out.println("Gpus:" + this.company.getGpus().getInventory());
-//        System.out.println("Computers:" + this.company.getComputers().getInventory());
+        System.out.println("Day: " + this.totalDayCounter);
+        System.out.println("Boards:" + this.company.getBoards().getInventory());
+        System.out.println("Cpus:" + this.company.getCpus().getInventory());
+        System.out.println("Rams:" + this.company.getRams().getInventory());
+        System.out.println("Supplies:" + this.company.getSupplies().getInventory());
+        System.out.println("Gpus:" + this.company.getGpus().getInventory());
+        System.out.println("Computers:" + this.company.getComputers().getInventory());
         this.totalDayCounter += 1;
         // Nominas
         this.company.payroll();

@@ -15,6 +15,7 @@ import projectInterface.Init;
 public class App {
     public static void start(){
         
+        
         String read = "./../../Proyecto-SO-1-Navas-Mendez/data.json";
         String apple = "Apple";
         String dell = "Dell";
@@ -30,7 +31,7 @@ public class App {
 //        thread1.start();
 //        thread2.start();
         
-//        Init ini = new Init();
-//        ini.setVisible(true);
+        Init ini = new Init();
+        ini.setVisible(true);
     }
 }
