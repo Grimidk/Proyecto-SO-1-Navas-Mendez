@@ -12,9 +12,7 @@ public class AuxJson {
     
     private int dataDuration;
     private int dataDeadline;
-    private int dataHours;
     private int dataTotalWorkers;
-    private int dataWorkerCost;
     private int dataStartingMoney;
     private int dataAppleBoardsWorkers;
     private int dataAppleCpuWorkers;
@@ -29,12 +27,10 @@ public class AuxJson {
     private int dataDellSupplyWorkers;
     private int dataDellComputerWorkers;
 
-    public AuxJson(int dataDuration, int dataDeadline, int dataHours, int dataTotalWorkers, int dataWorkerCost, int dataStartingMoney, int dataAppleBoardsWorkers, int dataAppleCpuWorkers, int dataAppleRamWorkers, int dataAppleGpuWorkers, int dataAppleSupplyWorkers, int dataAppleComputerWorkers, int dataDellBoardsWorkers, int dataDellCpuWorkers, int dataDellRamWorkers, int dataDellGpuWorkers, int dataDellSupplyWorkers, int dataDellComputerWorkers) {
+    public AuxJson(int dataDuration, int dataDeadline, int dataTotalWorkers, int dataStartingMoney, int dataAppleBoardsWorkers, int dataAppleCpuWorkers, int dataAppleRamWorkers, int dataAppleGpuWorkers, int dataAppleSupplyWorkers, int dataAppleComputerWorkers, int dataDellBoardsWorkers, int dataDellCpuWorkers, int dataDellRamWorkers, int dataDellGpuWorkers, int dataDellSupplyWorkers, int dataDellComputerWorkers) {
         this.dataDuration = dataDuration;
         this.dataDeadline = dataDeadline;
-        this.dataHours = dataHours;
         this.dataTotalWorkers = dataTotalWorkers;
-        this.dataWorkerCost = dataWorkerCost;
         this.dataStartingMoney = dataStartingMoney;
         this.dataAppleBoardsWorkers = dataAppleBoardsWorkers;
         this.dataAppleCpuWorkers = dataAppleCpuWorkers;
@@ -66,28 +62,12 @@ public class AuxJson {
         this.dataDeadline = dataDeadline;
     }
 
-    public int getDataHours() {
-        return dataHours;
-    }
-
-    public void setDataHours(int dataHours) {
-        this.dataHours = dataHours;
-    }
-
     public int getDataTotalWorkers() {
         return dataTotalWorkers;
     }
 
     public void setDataTotalWorkers(int dataTotalWorkers) {
         this.dataTotalWorkers = dataTotalWorkers;
-    }
-
-    public int getDataWorkerCost() {
-        return dataWorkerCost;
-    }
-
-    public void setDataWorkerCost(int dataWorkerCost) {
-        this.dataWorkerCost = dataWorkerCost;
     }
 
     public int getDataStartingMoney() {
