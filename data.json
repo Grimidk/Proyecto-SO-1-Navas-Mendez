@@ -10,7 +10,6 @@
     },
     "companies": {
       "apple": {
-        "name": "Apple",
         "productions": {
           "board": {
             "pay": 20,
@@ -71,9 +70,9 @@
               "ram": 4,
               "supply": 4,
               "gpu": 0,
-              "batch": 5
-            },
-            "price": 100000
+              "batch": 5,
+              "price": 100000
+            }
           },
           "special": {
             "recipe": {
@@ -82,14 +81,13 @@
               "ram": 4,
               "supply": 4,
               "gpu": 2,
-              "batch": 1
-            },
-            "price": 150000
+              "batch": 1,
+              "price": 150000
+            }
           }
         }
       },
       "dell": {
-        "name": "Dell",
         "productions": {
           "board": {
             "pay": 20,
@@ -150,9 +148,9 @@
               "ram": 6,
               "supply": 5,
               "gpu": 0,
-              "batch": 3
-            },
-            "price": 80000
+              "batch": 3,
+              "price": 80000
+            }    
           },
           "special": {
             "recipe": {
@@ -161,9 +159,9 @@
               "ram": 6,
               "supply": 5,
               "gpu": 1,
-              "batch": 1
-            },
-            "price": 120000
+              "batch": 1,
+              "price": 120000
+            }
           }
         }
       }
