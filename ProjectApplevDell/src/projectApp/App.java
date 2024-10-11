@@ -4,6 +4,7 @@
  */
 package projectApp;
 import auxClasses.Hilo;
+import javax.swing.SwingUtilities;
 import projectClasses.Simulation;
 import projectTools.JsonHandler;
 import projectInterface.Init;
@@ -30,8 +31,9 @@ public class App {
 //        Hilo thread2 = new Hilo(simu2, 1);
 //        thread1.start();
 //        thread2.start();
-        
-        Init ini = new Init();
-        ini.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+           Init ini = new Init();
+            ini.setVisible(true); 
+        });
     }
 }

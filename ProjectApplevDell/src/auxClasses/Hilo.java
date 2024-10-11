@@ -6,6 +6,8 @@ package auxClasses;
 
 import java.util.concurrent.Semaphore;
 import projectClasses.Simulation;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 
 
@@ -19,12 +21,20 @@ public class Hilo extends Thread{
     private float delay;
     private Semaphore sema;
     private boolean killSwitch;
+    private JTextField daysField;
+    private JTextField normalPCField;
+    private JTextField specialPCField;
+    private JTextField remainingDaysField;
     
-    public Hilo (Simulation simu, int permits){
+    public Hilo (Simulation simu, int permits, JTextField daysField, JTextField normalPCField, JTextField specialPCField, JTextField remainingDaysField){
         this.simu = simu;
         this.delay = (simu.getDuration()*1000)/48;
         this.sema = new Semaphore(permits);
         this.killSwitch = false;
+        this.daysField = daysField;
+        this.normalPCField = normalPCField;
+        this.specialPCField = specialPCField;
+        this.remainingDaysField = remainingDaysField;
     }
 
     public Simulation getSimu() {
@@ -70,6 +80,29 @@ public class Hilo extends Thread{
     @Override
     public void run(){
         while (!this.killSwitch){
+            int daysOut = simu.getTotalDayCounter();
+            SwingUtilities.invokeLater(() -> {
+                daysField.setText(String.valueOf(daysOut));
+//                System.out.println(daysOut);
+            });
+            
+            int normalPcOut = simu.getAccStandard();
+            SwingUtilities.invokeLater(() -> {
+                normalPCField.setText(String.valueOf(normalPcOut));
+//                System.out.println(normalPcOut);
+            });
+            
+            int specialPcOut = simu.getAccSpecial();
+            SwingUtilities.invokeLater(() -> {
+                specialPCField.setText(String.valueOf(specialPcOut));
+//                System.out.println(specialPcOut);
+            });
+            
+            int daysRemainingOut = simu.getDeadline();
+            SwingUtilities.invokeLater(() -> {
+                remainingDaysField.setText(String.valueOf(daysRemainingOut));
+//                System.out.println(daysRemainingOut);
+            });
             
             try{
                 this.sema.acquire();
