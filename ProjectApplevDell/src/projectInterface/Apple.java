@@ -4,7 +4,10 @@
  */
 package projectInterface;
 import auxClasses.Hilo;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import projectClasses.Simulation;
 import projectTools.JsonHandler;
 
@@ -16,6 +19,10 @@ public class Apple extends javax.swing.JFrame {
     
     public static Init ini;
     private Hilo hilo;
+    private int totalWorkers = 12;
+    private int[] prevValues = new int[6];
+//    private JSpinner boardWorkerSpinner, cpuWorkerSpinner, ramWorkerSpinner, supplyWorkerSpinner, gpuWorkerSpinner, computerWorkerSpinner;
+
     /**
      * Creates new form simulate
      */
@@ -33,9 +40,47 @@ public class Apple extends javax.swing.JFrame {
         String read = "./../../Proyecto-SO-1-Navas-Mendez/data.json";
         String apple = "Apple";
         Simulation simu1 = JsonHandler.reader(read, apple);
-        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField, this.totalPCField, this.manStatusField, this.penaltyField, this.penaltyAmountField, this.dirStatusField, this.prevNormalPCField, this.prevSpecialPCField, this.prevNetProfitField, this.opCostField, this.grossProfitField, this.netProfitField, this.boardAvailableField, this.cpuAvailableField, this.ramAvailableField, this.supplyAvailableField, this.gpuAvailableField, this.boardWorkerField, this.cpuWorkerField, this.ramWorkerField, this.supplyWorkerField, this.gpuWorkerField, this.computerWorkerField);
+        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField, this.totalPCField, this.manStatusField, this.penaltyField, this.penaltyAmountField, this.dirStatusField, this.prevNormalPCField, this.prevSpecialPCField, this.prevNetProfitField, this.opCostField, this.grossProfitField, this.netProfitField, this.boardAvailableField, this.cpuAvailableField, this.ramAvailableField, this.supplyAvailableField, this.gpuAvailableField, this.boardWorkerSpinner, this.cpuWorkerSpinner, this.ramWorkerSpinner, this.supplyWorkerSpinner, this.gpuWorkerSpinner, this.computerWorkerSpinner);
         hilo.start();
         
+        prevValues[0] = (int) boardWorkerSpinner.getValue();
+        prevValues[1] = (int) cpuWorkerSpinner.getValue();
+        prevValues[2] = (int) ramWorkerSpinner.getValue();
+        prevValues[3] = (int) supplyWorkerSpinner.getValue();
+        prevValues[4] = (int) gpuWorkerSpinner.getValue();
+        prevValues[5] = (int) computerWorkerSpinner.getValue();
+        
+        addChangeListener(boardWorkerSpinner, 0, (value) -> simu1.getCompany().getBoards().setWorkers(value));
+        addChangeListener(cpuWorkerSpinner, 1,(value) ->  simu1.getCompany().getCpus().setWorkers(value));
+        addChangeListener(ramWorkerSpinner, 2, (value) -> simu1.getCompany().getRams().setWorkers(value));
+        addChangeListener(supplyWorkerSpinner, 3,(value) ->  simu1.getCompany().getSupplies().setWorkers(value));
+        addChangeListener(gpuWorkerSpinner, 4, (value) -> simu1.getCompany().getGpus().setWorkers(value));
+        addChangeListener(computerWorkerSpinner, 5,(value) ->  simu1.getCompany().getComputers().setWorkers(value));
+        
+    }
+    
+    private void addChangeListener(JSpinner spinner, int index, AttributeSetter  setter){
+        spinner.addChangeListener(new ChangeListener(){
+            @Override
+            public void stateChanged(ChangeEvent e){
+                int currentValue = (int) spinner.getValue();
+            
+            // Determine if the spinner value went up or down
+            if (currentValue == prevValues[index] + 1) {
+                setter.set(currentValue);  // Call setter to update the value (e.g., increase workers)
+            } else if (currentValue == prevValues[index] - 1) {
+                setter.set(currentValue);  // Call setter to update the value (e.g., decrease workers)
+            }
+            
+            // Update previous value
+            prevValues[index] = currentValue;
+            }
+        });
+    }
+    
+    @FunctionalInterface
+    interface AttributeSetter {
+        void set(int value);
     }
  
     
@@ -84,12 +129,12 @@ public class Apple extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        boardWorkerField = new javax.swing.JSpinner();
-        cpuWorkerField = new javax.swing.JSpinner();
-        ramWorkerField = new javax.swing.JSpinner();
-        supplyWorkerField = new javax.swing.JSpinner();
-        gpuWorkerField = new javax.swing.JSpinner();
-        computerWorkerField = new javax.swing.JSpinner();
+        boardWorkerSpinner = new javax.swing.JSpinner();
+        cpuWorkerSpinner = new javax.swing.JSpinner();
+        ramWorkerSpinner = new javax.swing.JSpinner();
+        supplyWorkerSpinner = new javax.swing.JSpinner();
+        gpuWorkerSpinner = new javax.swing.JSpinner();
+        computerWorkerSpinner = new javax.swing.JSpinner();
         daysField = new javax.swing.JTextField();
         remainingDaysField = new javax.swing.JTextField();
         normalPCField = new javax.swing.JTextField();
@@ -288,28 +333,28 @@ public class Apple extends javax.swing.JFrame {
         jLabel37.setText("GPU:");
         jPanel2.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, -1, -1));
 
-        boardWorkerField.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        boardWorkerField.addChangeListener(new javax.swing.event.ChangeListener() {
+        boardWorkerSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        boardWorkerSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                boardWorkerFieldStateChanged(evt);
+                boardWorkerSpinnerStateChanged(evt);
             }
         });
-        jPanel2.add(boardWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
+        jPanel2.add(boardWorkerSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
 
-        cpuWorkerField.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        jPanel2.add(cpuWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, -1, -1));
+        cpuWorkerSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        jPanel2.add(cpuWorkerSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, -1, -1));
 
-        ramWorkerField.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        jPanel2.add(ramWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, -1, -1));
+        ramWorkerSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        jPanel2.add(ramWorkerSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, -1, -1));
 
-        supplyWorkerField.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        jPanel2.add(supplyWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
+        supplyWorkerSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        jPanel2.add(supplyWorkerSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
 
-        gpuWorkerField.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        jPanel2.add(gpuWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, -1, -1));
+        gpuWorkerSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        jPanel2.add(gpuWorkerSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, -1, -1));
 
-        computerWorkerField.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        jPanel2.add(computerWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
+        computerWorkerSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        jPanel2.add(computerWorkerSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
 
         daysField.setEditable(false);
         daysField.setColumns(3);
@@ -403,7 +448,7 @@ public class Apple extends javax.swing.JFrame {
         jPanel2.add(prevNetProfitField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, -1, -1));
 
         opCostField.setEditable(false);
-        opCostField.setColumns(10);
+        opCostField.setColumns(8);
         opCostField.setText("0");
         opCostField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,12 +458,12 @@ public class Apple extends javax.swing.JFrame {
         jPanel2.add(opCostField, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
 
         grossProfitField.setEditable(false);
-        grossProfitField.setColumns(10);
+        grossProfitField.setColumns(8);
         grossProfitField.setText("0");
         jPanel2.add(grossProfitField, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, -1, -1));
 
         netProfitField.setEditable(false);
-        netProfitField.setColumns(10);
+        netProfitField.setColumns(8);
         netProfitField.setText("0");
         jPanel2.add(netProfitField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
 
@@ -503,9 +548,9 @@ public class Apple extends javax.swing.JFrame {
          remainingDaysField.setText("0");
     }//GEN-LAST:event_remainingDaysFieldActionPerformed
 
-    private void boardWorkerFieldStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_boardWorkerFieldStateChanged
+    private void boardWorkerSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_boardWorkerSpinnerStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_boardWorkerFieldStateChanged
+    }//GEN-LAST:event_boardWorkerSpinnerStateChanged
 
     /**
      * @param args the command line arguments
@@ -552,14 +597,14 @@ public class Apple extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JTextField boardAvailableField;
-    private javax.swing.JSpinner boardWorkerField;
-    private javax.swing.JSpinner computerWorkerField;
+    private javax.swing.JSpinner boardWorkerSpinner;
+    private javax.swing.JSpinner computerWorkerSpinner;
     private javax.swing.JTextField cpuAvailableField;
-    private javax.swing.JSpinner cpuWorkerField;
+    private javax.swing.JSpinner cpuWorkerSpinner;
     private javax.swing.JTextField daysField;
     private javax.swing.JTextField dirStatusField;
     private javax.swing.JTextField gpuAvailableField;
-    private javax.swing.JSpinner gpuWorkerField;
+    private javax.swing.JSpinner gpuWorkerSpinner;
     private javax.swing.JTextField grossProfitField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -606,11 +651,11 @@ public class Apple extends javax.swing.JFrame {
     private javax.swing.JTextField prevNormalPCField;
     private javax.swing.JTextField prevSpecialPCField;
     private javax.swing.JTextField ramAvailableField;
-    private javax.swing.JSpinner ramWorkerField;
+    private javax.swing.JSpinner ramWorkerSpinner;
     private javax.swing.JTextField remainingDaysField;
     private javax.swing.JTextField specialPCField;
     private javax.swing.JTextField supplyAvailableField;
-    private javax.swing.JSpinner supplyWorkerField;
+    private javax.swing.JSpinner supplyWorkerSpinner;
     private javax.swing.JTextField totalPCField;
     // End of variables declaration//GEN-END:variables
 }
