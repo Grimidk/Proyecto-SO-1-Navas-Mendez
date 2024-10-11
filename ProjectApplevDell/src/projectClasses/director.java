@@ -16,6 +16,7 @@ public class Director {
     private int countPenalty;
     private int checkHour;
     private int totalPenalties;
+    private String status;
 
     // CONSTRUCTOR
     public Director(int wage, int threshold, int timeShipping) {
@@ -26,31 +27,43 @@ public class Director {
         this.countPenalty = 0;
         this.checkHour = 0;
         this.totalPenalties = 0;
+        this.status = "Distribuyendo";
     }
     
     
     // FUNCTIONS
     public boolean distributing(){
+        this.status = "Distribuyendo";
         return true;
     }
     
-    public int runDirector(int hours, int remainingDays, Manager manager) {
-        if (remainingDays <= 0) {
-            this.distributing();
-    }   else if (hours < 0) {
-            this.checkHour = (int) (Math.random() * 24);
-            if (hours == this.checkHour) {
-                boolean isWorking = manager.runManager(hours);
+    public boolean adminWork(){
+        this.status = "Trabajo Administrativo";
+        return true;
+    }
+    
+    public boolean checkManager(int hours, Manager manager){
+        this.status = "Revisando al Manager";
+        boolean isWorking = manager.runManager(hours);
                 this.penaltyAccredited = !isWorking;
                 if (!isWorking){
                     this.countPenalty += 1;
                     this.totalPenalties +=1;
                 }
-        }
+        return true;
     }
+    
+    public int runDirector(int hours, int remainingDays, Manager manager) {
+        if (hours == 0) { this.checkHour = (int) (Math.random() * 24);}
+        if (remainingDays <= 0) {
+            this.distributing();
+        } else if (hours == this.checkHour) {
+            this.checkManager(hours, manager);
+        } else {
+            this.adminWork();
+        }
         return this.countPenalty;
-}
-
+    }
 
     // GETTERS & SETTERS
     public int getWage() {
@@ -107,5 +120,13 @@ public class Director {
 
     public void setTotalPenalties(int totalPenalties) {
         this.totalPenalties = totalPenalties;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

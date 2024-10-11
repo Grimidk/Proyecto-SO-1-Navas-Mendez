@@ -15,6 +15,7 @@ import projectTools.JsonHandler;
 public class Apple extends javax.swing.JFrame {
     
     public static Init ini;
+    private Hilo hilo;
     /**
      * Creates new form simulate
      */
@@ -32,8 +33,8 @@ public class Apple extends javax.swing.JFrame {
         String read = "./../../Proyecto-SO-1-Navas-Mendez/data.json";
         String apple = "Apple";
         Simulation simu1 = JsonHandler.reader(read, apple);
-        Hilo thread1 = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField);
-        thread1.start();
+        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField);
+        hilo.start();
         
     }
  
@@ -307,7 +308,12 @@ public class Apple extends javax.swing.JFrame {
         remainingDaysField.setEditable(false);
         remainingDaysField.setColumns(3);
         remainingDaysField.setText("0");
-        jPanel2.add(remainingDaysField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+        remainingDaysField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remainingDaysFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(remainingDaysField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
 
         normalPCField.setEditable(false);
         normalPCField.setColumns(3);
@@ -441,6 +447,7 @@ public class Apple extends javax.swing.JFrame {
         // TODO add your handling code here:
         Init ini = new Init();
         ini.setVisible(true);
+        hilo.setKillSwitch(true);
         this.dispose();
 
     }//GEN-LAST:event_backActionPerformed
@@ -473,6 +480,11 @@ public class Apple extends javax.swing.JFrame {
     private void boardAvailableFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boardAvailableFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boardAvailableFieldActionPerformed
+
+    private void remainingDaysFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remainingDaysFieldActionPerformed
+        // TODO add your handling code here:
+         remainingDaysField.setText("0");
+    }//GEN-LAST:event_remainingDaysFieldActionPerformed
 
     /**
      * @param args the command line arguments

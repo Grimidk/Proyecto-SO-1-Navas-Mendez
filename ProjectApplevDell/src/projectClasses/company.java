@@ -133,16 +133,19 @@ public class Company {
         this.computers = computers;
     }
     
-    public void payroll(){
-        this.money -= (this.director.getWage() * 24);
-        this.money -= this.manager.getPaid(this.director.isPenaltyAccredited(),this.director.getCountPenalty());
-        this.money -= (this.boards.getFinalPay() + this.cpus.getFinalPay() + this.rams.getFinalPay() + this.supplies.getFinalPay() + this.gpus.getFinalPay() + this.computers.getFinalPay());
+    public int payroll(){
+        int directorWage = (this.director.getWage() * 24);
+        int managerWage = this.manager.getPaid(this.director.isPenaltyAccredited(),this.director.getCountPenalty());
+        int workerWage = (this.boards.getFinalPay() + this.cpus.getFinalPay() + this.rams.getFinalPay() + this.supplies.getFinalPay() + this.gpus.getFinalPay() + this.computers.getFinalPay());
+        this.money -= (directorWage + managerWage + workerWage);
+        return directorWage + managerWage + workerWage;
     }
     
-    public void distribute(int accStandard, int accSpecial) {
+    public int distribute(int accStandard, int accSpecial) {
         computers.setInventory(0);
         int incomeStandard = accStandard * this.getStandard().getPrice();
         int incomeSpecial = accSpecial * this.getSpecial().getPrice();
         this.money += incomeSpecial + incomeStandard;
+        return incomeSpecial + incomeStandard;
     }
 }

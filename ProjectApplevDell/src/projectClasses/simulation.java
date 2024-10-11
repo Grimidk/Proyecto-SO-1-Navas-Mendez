@@ -16,6 +16,8 @@ public class Simulation {
     private int prodCounter;
     private int accStandard;
     private int accSpecial;
+    private int lastStandard;
+    private int lastSpecial;
     private int deadline;
     private int workers;
     private int workerCost;
@@ -23,6 +25,9 @@ public class Simulation {
     private int workHours;
     private Company company;
     private Computer currentComputer;
+    private int totalLoss;
+    private int totalGain;
+    private int lastGain;
 
     public Simulation(int deadline, int workers, int workerCost, int duration, int workHours, Company company) {
         this.dayCounter = deadline;
@@ -32,6 +37,8 @@ public class Simulation {
         this.prodCounter = 0;
         this.accStandard = 0;
         this.accSpecial = 0;
+        this.lastStandard = 0;
+        this.lastSpecial = 0;
         this.deadline = deadline;
         this.workers = workers;
         this.workerCost = workerCost;
@@ -39,6 +46,8 @@ public class Simulation {
         this.workHours = workHours;
         this.company = company;
         this.currentComputer = this.company.getStandard();
+        this.totalLoss = 0;
+        this.totalGain = 0;
     }
     
     public int getDayCounter() {
@@ -59,6 +68,22 @@ public class Simulation {
 
     public int getAccSpecial() {
         return accSpecial;
+    }
+    
+    public int getAccTotal() {
+        return accSpecial + accStandard;
+    }
+
+    public int getLastStandard() {
+        return lastStandard;
+    }
+
+    public int getLastSpecial() {
+        return lastSpecial;
+    }
+    
+    public int getLastTotal() {
+        return lastSpecial + lastStandard;
     }
     
     public int getDeadline() {
@@ -87,6 +112,22 @@ public class Simulation {
 
     public Computer getCurrentComputer() {
         return currentComputer;
+    }
+
+    public int getTotalLoss() {
+        return totalLoss;
+    }
+
+    public int getTotalGain() {
+        return totalGain;
+    }
+    
+    public int getNetGain() {
+        return totalGain - totalLoss;
+    }
+
+    public int getLastGain() {
+        return lastGain;
     }
     
     public void setDayCounter(int dayCounter) {
@@ -152,6 +193,26 @@ public class Simulation {
     public void setMonthCounter(int monthCounter) {
         this.monthCounter = monthCounter;
     }
+
+    public void setLastStandard(int lastStandard) {
+        this.lastStandard = lastStandard;
+    }
+
+    public void setLastSpecial(int lastSpecial) {
+        this.lastSpecial = lastSpecial;
+    }
+
+    public void setTotalLoss(int totalLoss) {
+        this.totalLoss = totalLoss;
+    }
+
+    public void setTotalGain(int totalGain) {
+        this.totalGain = totalGain;
+    }
+
+    public void setLastGain(int lastGain) {
+        this.lastGain = lastGain;
+    }
     
     public void runHour() {
 //        System.out.println("Hour: " + this.hourCounter);
@@ -213,16 +274,16 @@ public class Simulation {
     }
     
     public void runDay() {
-        System.out.println("Day: " + this.totalDayCounter);
-        System.out.println("Boards:" + this.company.getBoards().getInventory());
-        System.out.println("Cpus:" + this.company.getCpus().getInventory());
-        System.out.println("Rams:" + this.company.getRams().getInventory());
-        System.out.println("Supplies:" + this.company.getSupplies().getInventory());
-        System.out.println("Gpus:" + this.company.getGpus().getInventory());
-        System.out.println("Computers:" + this.company.getComputers().getInventory());
+//        System.out.println("Day: " + this.totalDayCounter);
+//        System.out.println("Boards:" + this.company.getBoards().getInventory());
+//        System.out.println("Cpus:" + this.company.getCpus().getInventory());
+//        System.out.println("Rams:" + this.company.getRams().getInventory());
+//        System.out.println("Supplies:" + this.company.getSupplies().getInventory());
+//        System.out.println("Gpus:" + this.company.getGpus().getInventory());
+//        System.out.println("Computers:" + this.company.getComputers().getInventory());
         this.totalDayCounter += 1;
         // Nominas
-        this.company.payroll();
+        this.totalLoss += this.company.payroll();
         this.company.getDirector().setCountPenalty(0);
         this.company.getDirector().setPenaltyAccredited(false);
         
@@ -240,7 +301,10 @@ public class Simulation {
 //         System.out.println("Month: " + this.monthCounter);
         this.monthCounter += 1;
         // Distribucion
-        this.company.distribute(accStandard, accSpecial);
+        this.totalGain = this.company.distribute(accStandard, accSpecial);
+        this.lastStandard = this.accStandard;
+        this.lastSpecial = this.accSpecial;
+        this.lastGain = this.getNetGain();
         this.accStandard = 0;
         this.accSpecial = 0;
         this.setDayCounter(this.deadline);

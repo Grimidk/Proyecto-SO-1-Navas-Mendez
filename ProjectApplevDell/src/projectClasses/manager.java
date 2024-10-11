@@ -14,6 +14,7 @@ public class Manager {
     private int workedHours;
     private double timeInterval;
     private int penaltyAmount;
+    private String status;
 
     // CONSTRUCTOR
     public Manager(int pay, int countedHours, int workedHours, double timeInterval, int penaltyAmount) {
@@ -22,6 +23,7 @@ public class Manager {
         this.workedHours = workedHours;
         this.timeInterval = timeInterval;
         this.penaltyAmount = penaltyAmount;
+        this.status = "Trabajando";
     }
 
     // FUNCTIONS
@@ -34,12 +36,20 @@ public class Manager {
     }
     
     public boolean changeCounter() {
+        this.status = "Cambiando Contador";
         return true;
     }
     
     public boolean animeView(){
         double ranNumber  = Math.random();
-        return ranNumber < 0.5;
+        if (ranNumber < 0.5) {
+            this.status = "Trabajando";
+            return true;
+        } else {
+            this.status = "Viendo One Piece";
+            return false;
+        }
+
     }
             
     public boolean runManager(int hour){
@@ -90,6 +100,12 @@ public class Manager {
     public void setPenalty(int penaltyAmount) {
         this.penaltyAmount = penaltyAmount;
     }
-    
-    
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

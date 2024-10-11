@@ -15,6 +15,7 @@ import projectTools.JsonHandler;
 public class Dell extends javax.swing.JFrame {
     
     public static Init ini;
+    private Hilo hilo;
 
     /**
      * Creates new form Dell
@@ -28,9 +29,9 @@ public class Dell extends javax.swing.JFrame {
         
         String read = "./../../Proyecto-SO-1-Navas-Mendez/data.json";
         String apple = "Dell";
-        Simulation simu2 = JsonHandler.reader(read, apple);
-        Hilo thread1 = new Hilo(simu2, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField);
-        thread1.start();
+        Simulation simu1 = JsonHandler.reader(read, apple);
+        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField);
+        hilo.start();
     }
 
     /**
@@ -436,6 +437,7 @@ public class Dell extends javax.swing.JFrame {
         // TODO add your handling code here:
         Init ini = new Init();
         ini.setVisible(true);
+        hilo.setKillSwitch(true);
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
