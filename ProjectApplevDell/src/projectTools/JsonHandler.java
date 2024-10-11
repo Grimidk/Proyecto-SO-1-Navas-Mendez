@@ -165,7 +165,7 @@ public class JsonHandler {
 
             if ("Apple".equals(name)){
                 Computer standard = new Computer(false, dataAppleStandardRecipeBoard, dataAppleStandardRecipeCpu, dataAppleStandardRecipeRam, dataAppleStandardRecipeSupply, dataAppleStandardRecipeGpu, dataAppleStandardRecipeBatch, dataAppleStandardPrice);
-                Computer special = new Computer(false, dataAppleSpecialRecipeBoard, dataAppleSpecialRecipeCpu, dataAppleSpecialRecipeRam, dataAppleSpecialRecipeSupply, dataAppleSpecialRecipeGpu, dataAppleSpecialRecipeBatch, dataAppleSpecialPrice);
+                Computer special = new Computer(true, dataAppleSpecialRecipeBoard, dataAppleSpecialRecipeCpu, dataAppleSpecialRecipeRam, dataAppleSpecialRecipeSupply, dataAppleSpecialRecipeGpu, dataAppleSpecialRecipeBatch, dataAppleSpecialPrice);
                 Production boards = new Production("Boards", dataAppleBoardsPay, dataAppleBoardsRate, dataAppleBoardsCap, dataAppleBoardsWorkers);
                 Production cpus = new Production("Cpus", dataAppleCpuPay, dataAppleCpuRate, dataAppleCpuCap, dataAppleCpuWorkers);
                 Production rams = new Production("Rams", dataAppleRamPay, dataAppleRamRate, dataAppleRamCap, dataAppleRamWorkers);
@@ -180,7 +180,7 @@ public class JsonHandler {
                 return simulation;
             } else if ("Dell".equals(name)) {
                 Computer standard = new Computer(false, dataDellStandardRecipeBoard, dataDellStandardRecipeCpu, dataDellStandardRecipeRam, dataDellStandardRecipeSupply, dataDellStandardRecipeGpu, dataDellStandardRecipeBatch, dataDellStandardPrice);
-                Computer special = new Computer(false, dataDellSpecialRecipeBoard, dataDellSpecialRecipeCpu, dataDellSpecialRecipeRam, dataDellSpecialRecipeSupply, dataDellSpecialRecipeGpu, dataDellSpecialRecipeBatch, dataDellSpecialPrice);
+                Computer special = new Computer(true, dataDellSpecialRecipeBoard, dataDellSpecialRecipeCpu, dataDellSpecialRecipeRam, dataDellSpecialRecipeSupply, dataDellSpecialRecipeGpu, dataDellSpecialRecipeBatch, dataDellSpecialPrice);
                 Production boards = new Production("Boards", dataDellBoardsPay, dataDellBoardsRate, dataDellBoardsCap, dataDellBoardsWorkers);
                 Production cpus = new Production("Cpus", dataDellCpuPay, dataDellCpuRate, dataDellCpuCap, dataDellCpuWorkers);
                 Production rams = new Production("Rams", dataDellRamPay, dataDellRamRate, dataDellRamCap, dataDellRamWorkers);

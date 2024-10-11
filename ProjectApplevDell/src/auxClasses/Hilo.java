@@ -5,6 +5,7 @@
 package auxClasses;
 
 import java.util.concurrent.Semaphore;
+import javax.swing.JSpinner;
 import projectClasses.Simulation;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -41,8 +42,14 @@ public class Hilo extends Thread{
     private final JTextField ramAvailableField;
     private final JTextField supplyAvailableField;
     private final JTextField gpuAvailableField;
+    private final JSpinner boardWorkerField;
+    private final JSpinner cpuWorkerField;
+    private final JSpinner ramWorkerField;
+    private final JSpinner supplyWorkerField;
+    private final JSpinner gpuWorkerField;
+    private final JSpinner computerWorkerField;
     
-    public Hilo (Simulation simu, int permits, JTextField daysField, JTextField normalPCField, JTextField specialPCField, JTextField remainingDaysField, JTextField totalPCField, javax.swing.JTextField manStatusField, javax.swing.JTextField penaltyField, javax.swing.JTextField penaltyAmountField, javax.swing.JTextField dirStatusField, javax.swing.JTextField prevNormalPCField, javax.swing.JTextField prevSpecialPCField, javax.swing.JTextField prevNetProfitField, javax.swing.JTextField opCostField, javax.swing.JTextField grossProfitField, javax.swing.JTextField netProfitField, javax.swing.JTextField boardAvailableField, javax.swing.JTextField cpuAvailableField, javax.swing.JTextField ramAvailableField, javax.swing.JTextField supplyAvailableField, javax.swing.JTextField gpuAvailableField){
+    public Hilo (Simulation simu, int permits, JTextField daysField, JTextField normalPCField, JTextField specialPCField, JTextField remainingDaysField, JTextField totalPCField, javax.swing.JTextField manStatusField, javax.swing.JTextField penaltyField, javax.swing.JTextField penaltyAmountField, javax.swing.JTextField dirStatusField, javax.swing.JTextField prevNormalPCField, javax.swing.JTextField prevSpecialPCField, javax.swing.JTextField prevNetProfitField, javax.swing.JTextField opCostField, javax.swing.JTextField grossProfitField, javax.swing.JTextField netProfitField, javax.swing.JTextField boardAvailableField, javax.swing.JTextField cpuAvailableField, javax.swing.JTextField ramAvailableField, javax.swing.JTextField supplyAvailableField, javax.swing.JTextField gpuAvailableField, javax.swing.JSpinner boardWorkerField, javax.swing.JSpinner cpuWorkerField, javax.swing.JSpinner ramWorkerField, javax.swing.JSpinner supplyWorkerField, javax.swing.JSpinner gpuWorkerField, javax.swing.JSpinner computerWorkerField){
         this.simu = simu;
         this.delay = (simu.getDuration()*1000)/48;
         this.sema = new Semaphore(permits);
@@ -67,6 +74,12 @@ public class Hilo extends Thread{
         this.ramAvailableField = ramAvailableField;
         this.supplyAvailableField = supplyAvailableField;
         this.gpuAvailableField = gpuAvailableField;
+        this.boardWorkerField = boardWorkerField;
+        this.cpuWorkerField = cpuWorkerField;
+        this.ramWorkerField = ramWorkerField;
+        this.supplyWorkerField = supplyWorkerField;
+        this.gpuWorkerField = gpuWorkerField;
+        this.computerWorkerField = computerWorkerField;
     }
 
     public Simulation getSimu() {
@@ -152,12 +165,12 @@ public class Hilo extends Thread{
                 manStatusField.setText(manStatusOut);
                 });
                 
-                int penaltyOut = simu.getCompany().getDirector().getCountPenalty();
+                int penaltyOut = simu.getCompany().getDirector().getTotalPenalties();
                 SwingUtilities.invokeLater(() -> {
                 penaltyField.setText(String.valueOf(penaltyOut));
                 });
                 
-                int penaltyAmountOut = simu.getCompany().getManager().getPenaltyAmount();
+                int penaltyAmountOut = simu.getCompany().getDirector().getTotalPenalties() * simu.getCompany().getManager().getPenaltyAmount();
                 SwingUtilities.invokeLater(() -> {
                 penaltyAmountField.setText(String.valueOf(penaltyAmountOut));
                 });
@@ -222,6 +235,35 @@ public class Hilo extends Thread{
                 gpuAvailableField.setText(String.valueOf((int) Math.floor(gpuAvailableOut)));
                 });
                 
+                int boardWorkerOut = simu.getCompany().getBoards().getWorkers();
+                SwingUtilities.invokeLater(() -> {
+                boardWorkerField.setValue(boardWorkerOut);
+                });
+                
+                int cpuWorkerOut = simu.getCompany().getCpus().getWorkers();
+                SwingUtilities.invokeLater(() -> {
+                cpuWorkerField.setValue(cpuWorkerOut);
+                });
+                
+                int ramWorkerOut = simu.getCompany().getRams().getWorkers();
+                SwingUtilities.invokeLater(() -> {
+                ramWorkerField.setValue(ramWorkerOut);
+                });
+                
+                int supplyWorkerOut = simu.getCompany().getSupplies().getWorkers();
+                SwingUtilities.invokeLater(() -> {
+                supplyWorkerField.setValue(supplyWorkerOut);
+                });
+                
+                int gpuWorkerOut = simu.getCompany().getGpus().getWorkers();
+                SwingUtilities.invokeLater(() -> {
+                gpuWorkerField.setValue(gpuWorkerOut);
+                });
+                
+                int computerWorkerOut = simu.getCompany().getComputers().getWorkers();
+                SwingUtilities.invokeLater(() -> {
+                computerWorkerField.setValue(computerWorkerOut);
+                });
                 
                 
             }catch (InterruptedException e){

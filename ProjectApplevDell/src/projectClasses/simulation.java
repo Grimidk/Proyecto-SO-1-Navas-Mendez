@@ -248,7 +248,7 @@ public class Simulation {
                 this.prodCounter += 1;
             }
         }
-            
+        
         if(this.prodCounter >= this.currentComputer.getBatch()){
             this.setProdCounter(0);
             if(!this.currentComputer.isType()){

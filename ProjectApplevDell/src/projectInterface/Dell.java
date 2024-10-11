@@ -30,7 +30,7 @@ public class Dell extends javax.swing.JFrame {
         String read = "./../../Proyecto-SO-1-Navas-Mendez/data.json";
         String apple = "Dell";
         Simulation simu1 = JsonHandler.reader(read, apple);
-        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField, this.totalPCField, this.manStatusField, this.penaltyField, this.penaltyAmountField, this.dirStatusField, this.prevNormalPCField, this.prevSpecialPCField, this.prevNetProfitField, this.opCostField, this.grossProfitField, this.netProfitField, this.boardAvailableField, this.cpuAvailableField, this.ramAvailableField, this.supplyAvailableField, this.gpuAvailableField);
+        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField, this.totalPCField, this.manStatusField, this.penaltyField, this.penaltyAmountField, this.dirStatusField, this.prevNormalPCField, this.prevSpecialPCField, this.prevNetProfitField, this.opCostField, this.grossProfitField, this.netProfitField, this.boardAvailableField, this.cpuAvailableField, this.ramAvailableField, this.supplyAvailableField, this.gpuAvailableField, this.boardWorkerField, this.cpuWorkerField, this.ramWorkerField, this.supplyWorkerField, this.gpuWorkerField, this.computerWorkerField);
         hilo.start();
     }
 
@@ -98,12 +98,12 @@ public class Dell extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
-        jSpinner4 = new javax.swing.JSpinner();
-        jSpinner5 = new javax.swing.JSpinner();
-        jSpinner6 = new javax.swing.JSpinner();
+        boardWorkerField = new javax.swing.JSpinner();
+        cpuWorkerField = new javax.swing.JSpinner();
+        ramWorkerField = new javax.swing.JSpinner();
+        supplyWorkerField = new javax.swing.JSpinner();
+        gpuWorkerField = new javax.swing.JSpinner();
+        computerWorkerField = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -294,7 +294,7 @@ public class Dell extends javax.swing.JFrame {
         jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
 
         opCostField.setEditable(false);
-        opCostField.setColumns(3);
+        opCostField.setColumns(10);
         opCostField.setText("0");
         opCostField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,7 +309,7 @@ public class Dell extends javax.swing.JFrame {
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, -1, -1));
 
         grossProfitField.setEditable(false);
-        grossProfitField.setColumns(3);
+        grossProfitField.setColumns(10);
         grossProfitField.setText("0");
         jPanel1.add(grossProfitField, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, -1, -1));
 
@@ -319,7 +319,7 @@ public class Dell extends javax.swing.JFrame {
         jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
 
         netProfitField.setEditable(false);
-        netProfitField.setColumns(3);
+        netProfitField.setColumns(10);
         netProfitField.setText("0");
         jPanel1.add(netProfitField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
 
@@ -417,12 +417,12 @@ public class Dell extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Ensambladores:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, -1, -1));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
-        jPanel1.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, -1, -1));
-        jPanel1.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, -1, -1));
-        jPanel1.add(jSpinner4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
-        jPanel1.add(jSpinner5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, -1, -1));
-        jPanel1.add(jSpinner6, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
+        jPanel1.add(boardWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 130, -1, -1));
+        jPanel1.add(cpuWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, -1, -1));
+        jPanel1.add(ramWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, -1, -1));
+        jPanel1.add(supplyWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, -1));
+        jPanel1.add(gpuWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 270, -1, -1));
+        jPanel1.add(computerWorkerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 310, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectInterface/faded_gallery-7stSlxNAmfc-unsplash.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -508,10 +508,14 @@ public class Dell extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JTextField boardAvailableField;
+    private javax.swing.JSpinner boardWorkerField;
+    private javax.swing.JSpinner computerWorkerField;
     private javax.swing.JTextField cpuAvailableField;
+    private javax.swing.JSpinner cpuWorkerField;
     private javax.swing.JTextField daysField;
     private javax.swing.JTextField dirStatusField;
     private javax.swing.JTextField gpuAvailableField;
+    private javax.swing.JSpinner gpuWorkerField;
     private javax.swing.JTextField grossProfitField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -548,12 +552,6 @@ public class Dell extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner6;
     private javax.swing.JTextField manStatusField;
     private javax.swing.JTextField netProfitField;
     private javax.swing.JTextField normalPCField;
@@ -564,9 +562,11 @@ public class Dell extends javax.swing.JFrame {
     private javax.swing.JTextField prevNormalPCField;
     private javax.swing.JTextField prevSpecialPCField;
     private javax.swing.JTextField ramAvailableField;
+    private javax.swing.JSpinner ramWorkerField;
     private javax.swing.JTextField remainingDaysField;
     private javax.swing.JTextField specialPCField;
     private javax.swing.JTextField supplyAvailableField;
+    private javax.swing.JSpinner supplyWorkerField;
     private javax.swing.JTextField totalPCField;
     // End of variables declaration//GEN-END:variables
 }
