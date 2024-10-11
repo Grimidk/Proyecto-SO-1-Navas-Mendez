@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package projectInterface;
+import projectClasses.Simulation;
+import projectTools.JsonHandler;
+import auxClasses.Hilo;
 
 /**
  *

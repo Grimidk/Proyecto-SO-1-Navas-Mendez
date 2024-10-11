@@ -199,7 +199,7 @@ public class Configurate extends javax.swing.JFrame {
         jLabel3.setText("Días entre las entregas");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, -1, -1));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(3, 1, null, 1));
         jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -207,7 +207,7 @@ public class Configurate extends javax.swing.JFrame {
         jLabel4.setText("Duración de días (en seg)");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(30, 1, null, 1));
         jPanel1.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectInterface/Apple_logo_grey (1).png"))); // NOI18N
@@ -221,7 +221,7 @@ public class Configurate extends javax.swing.JFrame {
         jLabel7.setText("Prod. placa base");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(2, 1, null, 1));
         jSpinner3.setToolTipText("");
         jPanel1.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
 
@@ -238,7 +238,7 @@ public class Configurate extends javax.swing.JFrame {
         jLabel9.setText("Prod. placa base");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
-        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(3, 1, null, 1));
         jPanel1.add(jSpinner5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -246,7 +246,7 @@ public class Configurate extends javax.swing.JFrame {
         jLabel10.setText("Prod. RAM");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
-        jSpinner6.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner6.setModel(new javax.swing.SpinnerNumberModel(2, 1, null, 1));
         jPanel1.add(jSpinner6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -262,7 +262,7 @@ public class Configurate extends javax.swing.JFrame {
         jLabel12.setText("Prod. Fuentes de energía");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
 
-        jSpinner8.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner8.setModel(new javax.swing.SpinnerNumberModel(2, 1, null, 1));
         jPanel1.add(jSpinner8, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -270,7 +270,7 @@ public class Configurate extends javax.swing.JFrame {
         jLabel13.setText("Prod. RAM");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
 
-        jSpinner9.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner9.setModel(new javax.swing.SpinnerNumberModel(4, 1, null, 1));
         jPanel1.add(jSpinner9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -310,7 +310,7 @@ public class Configurate extends javax.swing.JFrame {
         jLabel18.setText("Ensambladores");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, -1));
 
-        jSpinner14.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinner14.setModel(new javax.swing.SpinnerNumberModel(6, 1, null, 1));
         jPanel1.add(jSpinner14, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N

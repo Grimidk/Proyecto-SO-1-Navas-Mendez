@@ -30,7 +30,7 @@ public class Dell extends javax.swing.JFrame {
         String read = "./../../Proyecto-SO-1-Navas-Mendez/data.json";
         String apple = "Dell";
         Simulation simu1 = JsonHandler.reader(read, apple);
-        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField);
+        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField, this.totalPCField, this.manStatusField, this.penaltyField, this.penaltyAmountField, this.dirStatusField, this.prevNormalPCField, this.prevSpecialPCField, this.prevNetProfitField, this.opCostField, this.grossProfitField, this.netProfitField, this.boardAvailableField, this.cpuAvailableField, this.ramAvailableField, this.supplyAvailableField, this.gpuAvailableField);
         hilo.start();
     }
 

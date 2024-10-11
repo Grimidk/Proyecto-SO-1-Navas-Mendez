@@ -33,7 +33,7 @@ public class Apple extends javax.swing.JFrame {
         String read = "./../../Proyecto-SO-1-Navas-Mendez/data.json";
         String apple = "Apple";
         Simulation simu1 = JsonHandler.reader(read, apple);
-        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField);
+        this.hilo = new Hilo(simu1, 1, this.daysField, this.normalPCField, this.specialPCField, this.remainingDaysField, this.totalPCField, this.manStatusField, this.penaltyField, this.penaltyAmountField, this.dirStatusField, this.prevNormalPCField, this.prevSpecialPCField, this.prevNetProfitField, this.opCostField, this.grossProfitField, this.netProfitField, this.boardAvailableField, this.cpuAvailableField, this.ramAvailableField, this.supplyAvailableField, this.gpuAvailableField);
         hilo.start();
         
     }
@@ -326,7 +326,7 @@ public class Apple extends javax.swing.JFrame {
         jPanel2.add(specialPCField, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
 
         manStatusField.setEditable(false);
-        manStatusField.setColumns(10);
+        manStatusField.setColumns(15);
         manStatusField.setText("Por comenzar");
         manStatusField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,7 +361,7 @@ public class Apple extends javax.swing.JFrame {
         jPanel2.add(penaltyAmountField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         dirStatusField.setEditable(false);
-        dirStatusField.setColumns(10);
+        dirStatusField.setColumns(15);
         dirStatusField.setText("Por comenzar");
         dirStatusField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
